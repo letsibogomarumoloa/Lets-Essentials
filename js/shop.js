@@ -1,45 +1,191 @@
-// ==================================
-// LETS ESSENTIALS SHOP SYSTEM
-// ==================================
+// ======================================
+// LETS ESSENTIALS CUSTOMER SHOP
+// shop.js
+// ======================================
 
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let products = JSON.parse(
 
+localStorage.getItem("products")
 
-
-
-// Add product
-
-function addToCart(name, price){
-
-
-let existingProduct = cart.find(item => item.name === name);
+) || [];
 
 
 
-if(existingProduct){
+let cart = JSON.parse(
+
+localStorage.getItem("cart")
+
+) || [];
 
 
-    existingProduct.quantity += 1;
+
+
+const productsContainer =
+document.getElementById("productsContainer");
+
+
+
+
+
+function displayProducts(){
+
+
+if(!productsContainer) return;
+
+
+
+productsContainer.innerHTML="";
+
+
+
+if(products.length === 0){
+
+
+productsContainer.innerHTML =
+
+`
+
+<div>
+
+<h3>
+No products available yet.
+</h3>
+
+<p>
+Please check back soon.
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+
+
+
+products.forEach((product,index)=>{
+
+
+productsContainer.innerHTML +=
+
+`
+
+<div class="product-card">
+
+
+<img 
+src="${product.image}"
+alt="${product.name}">
+
+
+
+<h3>
+
+${product.name}
+
+</h3>
+
+
+
+<p class="category">
+
+${product.category}
+
+</p>
+
+
+
+<h4>
+
+P${product.price}
+
+</h4>
+
+
+
+<button 
+
+onclick="addToCart(${index})">
+
+Add To Cart
+
+</button>
+
+
+
+</div>
+
+`;
+
+
+
+});
+
 
 
 }
 
-else{
 
 
-    cart.push({
 
-        name:name,
 
-        price:price,
 
-        quantity:1
 
-    });
+
+function addToCart(index){
+
+
+
+let product = products[index];
+
+
+
+
+
+let existing = cart.find(item =>
+
+item.id === product.id
+
+);
+
+
+
+
+
+if(existing){
+
+
+existing.quantity += 1;
+
+
+}else{
+
+
+cart.push({
+
+id:product.id,
+
+name:product.name,
+
+price:product.price,
+
+image:product.image,
+
+quantity:1
+
+
+});
 
 
 }
+
+
+
 
 
 
@@ -53,8 +199,25 @@ JSON.stringify(cart)
 
 
 
-alert(name + " added to cart!");
+
+
+
+alert(
+
+product.name +
+
+" added to cart"
+
+);
 
 
 
 }
+
+
+
+
+
+
+
+displayProducts();
