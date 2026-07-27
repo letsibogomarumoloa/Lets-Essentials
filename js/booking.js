@@ -3,174 +3,264 @@
 // ===============================
 
 
-// Simulated bookings database
-// Later this can be replaced with a real database
-
 const bookedSlots = [
 
-    {
-        date: "2026-08-15",
-        time: "10:00"
-    },
+{
+date:"2026-08-15",
+time:"10:00"
+},
 
-    {
-        date: "2026-08-15",
-        time: "11:00"
-    },
+{
+date:"2026-08-15",
+time:"11:00"
+},
 
-    {
-        date: "2026-08-20",
-        time: "14:00"
-    }
+{
+date:"2026-08-20",
+time:"14:00"
+}
 
 ];
 
 
 
+const availableTimes = [
 
-// Get form elements
+"08:00",
+"09:00",
+"10:00",
+"11:00",
+"12:00",
+"13:00",
+"14:00",
+"15:00"
 
-const bookingForm = document.getElementById("bookingForm");
-
-const bookingMessage = document.getElementById("bookingMessage");
-
-
-
-
-
-// When customer submits booking
-
-bookingForm.addEventListener("submit", function(event){
-
-
-    event.preventDefault();
+];
 
 
 
-    const customerName =
-    document.getElementById("name").value;
+const dateInput =
+document.getElementById("date");
 
 
-    const phone =
-    document.getElementById("phone").value;
+const timeContainer =
+document.getElementById("timeSlots");
 
 
-    const service =
-    document.getElementById("service").value;
-
-
-    const date =
-    document.getElementById("date").value;
-
-
-    const time =
-    document.getElementById("time").value;
-
-
-    const houseCall =
-    document.getElementById("houseCall").checked;
+const timeInput =
+document.getElementById("time");
 
 
 
 
-    // Check availability
+// Generate time slots when date changes
 
-    const isBooked =
-    bookedSlots.some(slot =>
-
-        slot.date === date &&
-        slot.time === time
-
-    );
+dateInput.addEventListener("change",()=>{
 
 
+    timeContainer.innerHTML="";
+
+
+    let selectedDate =
+    dateInput.value;
 
 
 
-    if(isBooked){
+    availableTimes.forEach(time=>{
 
 
-        bookingMessage.style.color = "red";
+        let slot =
+        document.createElement("div");
 
 
-        bookingMessage.innerHTML =
-
-        `
-        ❌ Sorry ${customerName}, this time slot is already fully booked.
-        Please select another date or time.
-        `;
+        slot.classList.add("time-slot");
 
 
-        return;
 
-    }
+        let taken =
+        bookedSlots.some(booked=>
+
+            booked.date === selectedDate &&
+            booked.time === time
+
+        );
+
+
+
+
+        slot.innerHTML =
+        taken
+        ?
+        `${time}<br>❌ Booked`
+        :
+        `${time}<br>🟢 Available`;
 
 
 
 
 
-    // Add booking temporarily
+        if(taken){
 
-    bookedSlots.push({
 
-        date:date,
-        time:time
+            slot.classList.add("booked");
+
+
+        }
+
+        else{
+
+
+            slot.addEventListener("click",()=>{
+
+
+                document
+                .querySelectorAll(".time-slot")
+                .forEach(item=>
+
+                    item.classList.remove("selected")
+
+                );
+
+
+
+                slot.classList.add("selected");
+
+
+                timeInput.value=time;
+
+
+            });
+
+
+        }
+
+
+
+        timeContainer.appendChild(slot);
+
+
 
     });
 
 
-
-
-
-    // Success message
-
-    bookingMessage.style.color = "green";
-
-
-    bookingMessage.innerHTML =
-
-    `
-    ✅ Booking Confirmed!
-
-    <br><br>
-
-    Thank you ${customerName}.
-
-    <br>
-
-    Service:
-    ${service}
-
-    <br>
-
-    Date:
-    ${date}
-
-    <br>
-
-    Time:
-    ${time}
-
-    ${
-        houseCall 
-        ?
-        "<br>🏠 House Call Requested"
-        :
-        ""
-    }
-
-    <br><br>
-
-    We look forward to serving you.
-    `;
+});
 
 
 
 
 
-    // Reset form
 
-    bookingForm.reset();
+// Booking submission
+
+
+const form =
+document.getElementById("bookingForm");
+
+
+const message =
+document.getElementById("bookingMessage");
+
+
+
+form.addEventListener("submit",(e)=>{
+
+
+e.preventDefault();
+
+
+
+const name =
+document.getElementById("name").value;
+
+
+const service =
+document.getElementById("service").value;
+
+
+const date =
+dateInput.value;
+
+
+const time =
+timeInput.value;
+
+
+
+if(!time){
+
+
+message.style.color="red";
+
+
+message.innerHTML=
+
+"❌ Please select an available time slot.";
+
+
+return;
+
+
+}
+
+
+
+
+
+bookedSlots.push({
+
+date:date,
+time:time
+
+});
+
+
+
+
+
+message.style.color="green";
+
+
+message.innerHTML=
+
+`
+✅ Booking Confirmed!
+
+<br><br>
+
+Thank you ${name}.
+
+<br>
+
+Service:
+${service}
+
+<br>
+
+Date:
+${date}
+
+<br>
+
+Time:
+${time}
+
+<br><br>
+
+We look forward to serving you.
+`;
+
+
+
+form.reset();
+
+
+timeContainer.innerHTML=
+
+`
+<p class="choose-date">
+Please select a date first.
+</p>
+`;
 
 
 
