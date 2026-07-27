@@ -151,3 +151,37 @@ font-size:40px;
 
 
 }
+
+.timeline{
+
+margin-top:25px;
+
+text-align:left;
+
+}
+
+
+
+.timeline p{
+
+background:#f5f7fa;
+
+padding:15px;
+
+border-radius:15px;
+
+margin:10px 0;
+
+font-weight:600;
+
+}
+
+
+
+.timeline .active{
+
+background:#0F4C81;
+
+color:white;
+
+}
