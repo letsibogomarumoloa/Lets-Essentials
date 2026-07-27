@@ -376,7 +376,7 @@ header{
 
 .gallery-small div{
 
-    height:270px;
+    height:180px;
 
     border-radius:25px;
 
@@ -386,7 +386,35 @@ header{
 
 }
 
+.gallery-small .sports-card{
 
+    margin-top:10px;
+
+}
+
+
+
+.gallery-small span{
+
+    position:absolute;
+
+    bottom:15px;
+
+    left:15px;
+
+    background:white;
+
+    padding:8px 18px;
+
+    border-radius:25px;
+
+    font-weight:600;
+
+    font-size:14px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+}
 
 .gallery-small img{
 
