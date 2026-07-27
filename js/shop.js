@@ -1,7 +1,6 @@
 // ==================================
-// LETS ESSENTIALS SHOPPING CART
+// LETS ESSENTIALS SHOP SYSTEM
 // ==================================
-
 
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -9,9 +8,24 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 
 
-// Add product to cart
+// Add product
 
 function addToCart(name, price){
+
+
+let existingProduct = cart.find(item => item.name === name);
+
+
+
+if(existingProduct){
+
+
+    existingProduct.quantity += 1;
+
+
+}
+
+else{
 
 
     cart.push({
@@ -25,22 +39,21 @@ function addToCart(name, price){
     });
 
 
-
-    localStorage.setItem(
-
-        "cart",
-
-        JSON.stringify(cart)
-
-    );
+}
 
 
 
-    alert(
+localStorage.setItem(
 
-        name + " added to cart!"
+"cart",
 
-    );
+JSON.stringify(cart)
+
+);
+
+
+
+alert(name + " added to cart!");
 
 
 
