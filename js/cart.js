@@ -3,7 +3,6 @@
 // ==================================
 
 
-
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 
@@ -19,8 +18,8 @@ document.getElementById("cartTotal");
 
 
 
-
 // Display cart
+
 
 function displayCart(){
 
@@ -53,11 +52,13 @@ return;
 
 
 
-
 cart.forEach((item,index)=>{
 
 
-total += item.price;
+let itemTotal = item.price * item.quantity;
+
+
+total += itemTotal;
 
 
 
@@ -70,6 +71,7 @@ cartItems.innerHTML +=
 
 <div>
 
+
 <h3>
 
 ${item.name}
@@ -79,9 +81,44 @@ ${item.name}
 
 <p>
 
-Price: P${item.price}
+Price:
+P${item.price}
 
 </p>
+
+
+
+<div class="quantity">
+
+
+<button onclick="changeQuantity(${index},-1)">
+-
+</button>
+
+
+<span>
+
+${item.quantity}
+
+</span>
+
+
+<button onclick="changeQuantity(${index},1)">
++
+</button>
+
+
+</div>
+
+
+<p>
+
+Subtotal:
+
+P${itemTotal}
+
+</p>
+
 
 
 </div>
@@ -94,6 +131,7 @@ Price: P${item.price}
 Remove
 
 </button>
+
 
 
 </div>
@@ -118,13 +156,65 @@ cartTotal.innerHTML =
 
 
 
-// Remove item
+// Increase / decrease quantity
 
-function removeItem(index){
+
+function changeQuantity(index,change){
+
+
+
+cart[index].quantity += change;
+
+
+
+
+if(cart[index].quantity <=0){
 
 
 cart.splice(index,1);
 
+
+}
+
+
+
+
+saveCart();
+
+
+displayCart();
+
+
+}
+
+
+
+
+
+// Remove product
+
+
+function removeItem(index){
+
+
+
+cart.splice(index,1);
+
+
+
+saveCart();
+
+
+displayCart();
+
+
+}
+
+
+
+
+
+function saveCart(){
 
 
 localStorage.setItem(
@@ -134,10 +224,6 @@ localStorage.setItem(
 JSON.stringify(cart)
 
 );
-
-
-
-displayCart();
 
 
 }
@@ -152,7 +238,8 @@ displayCart();
 function checkout(){
 
 
-if(cart.length === 0){
+
+if(cart.length===0){
 
 
 document.getElementById("orderMessage").innerHTML=
@@ -167,22 +254,15 @@ return;
 
 
 
-
-
 let name =
-
 document.getElementById("customerName").value;
 
 
-
 let phone =
-
 document.getElementById("customerPhone").value;
 
 
-
 let address =
-
 document.getElementById("customerAddress").value;
 
 
@@ -194,7 +274,7 @@ if(!name || !phone || !address){
 
 document.getElementById("orderMessage").innerHTML=
 
-"❌ Please complete all delivery details.";
+"❌ Please complete all details.";
 
 
 return;
@@ -212,10 +292,29 @@ let orderNumber =
 
 Math.floor(
 
-Math.random()*90000 + 10000
+Math.random()*90000+10000
 
 );
 
+
+
+
+
+let orderData = {
+
+
+id:orderNumber,
+
+status:"Processing",
+
+date:new Date().toLocaleDateString(),
+
+products:cart,
+
+customer:name
+
+
+};
 
 
 
@@ -223,119 +322,12 @@ Math.random()*90000 + 10000
 
 localStorage.setItem(
 
-"orderID",
+"orderData",
 
-orderNumber
-
-);
-
-
-
-localStorage.setItem(
-
-"orderStatus",
-
-"Processing"
+JSON.stringify(orderData)
 
 );
 
-
-
-
-
-let message =
-
-`
-
-Hello Lets Essentials 👋
-
-
-I would like to place an order.
-
-
-Order Number:
-
-${orderNumber}
-
-
-Customer:
-
-${name}
-
-
-Phone:
-
-${phone}
-
-
-Address:
-
-${address}
-
-
-
-Products:
-
-`;
-
-
-
-
-
-cart.forEach(item=>{
-
-
-message +=
-
-`
-
-${item.name}
-
-- P${item.price}
-
-`;
-
-
-
-});
-
-
-
-
-
-message +=
-
-`
-
-Total:
-
-${cartTotal.innerText}
-
-
-Thank you.
-
-`;
-
-
-
-
-
-
-let whatsappNumber =
-
-"26777044869";
-
-
-
-let whatsappLink =
-
-"https://wa.me/" +
-
-whatsappNumber +
-
-"?text=" +
-
-encodeURIComponent(message);
 
 
 
@@ -349,35 +341,21 @@ document.getElementById("orderMessage").innerHTML=
 
 <br><br>
 
-Your Order Number:
+Order Number:
 
 <b>${orderNumber}</b>
 
+<br><br>
+
+Status:
+
+🟡 Processing
 
 <br><br>
 
-Use this number to track your order.
+You can now track your order.
 
 `;
-
-
-
-
-
-let whatsappButton =
-
-document.getElementById("whatsappOrder");
-
-
-
-whatsappButton.href = whatsappLink;
-
-whatsappButton.innerHTML =
-
-"Send Order Through WhatsApp";
-
-
-whatsappButton.style.display="block";
 
 
 
@@ -386,13 +364,7 @@ whatsappButton.style.display="block";
 cart=[];
 
 
-localStorage.setItem(
-
-"cart",
-
-JSON.stringify(cart)
-
-);
+saveCart();
 
 
 
