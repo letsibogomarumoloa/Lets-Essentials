@@ -1,1 +1,319 @@
+/* ===========================
+   AUTO CARE HERO
+=========================== */
 
+
+.auto-hero{
+
+    min-height:70vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    background:
+    linear-gradient(
+    rgba(15,76,129,.75),
+    rgba(15,76,129,.75)
+    ),
+    url("../images/car.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    color:white;
+
+    padding-top:120px;
+
+}
+
+
+.auto-hero h1{
+
+    font-size:60px;
+
+    margin-bottom:20px;
+
+}
+
+
+.auto-hero p{
+
+    max-width:700px;
+
+    margin:auto;
+
+    font-size:18px;
+
+    margin-bottom:35px;
+
+}
+
+
+
+
+/* ===========================
+   SERVICE CARDS
+=========================== */
+
+
+.auto-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:25px;
+
+}
+
+
+
+.auto-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+    border-top:4px solid #0F4C81;
+
+}
+
+
+
+.auto-card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+
+
+.auto-card h3{
+
+    color:#0F4C81;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.auto-card p{
+
+    color:#666;
+
+    min-height:60px;
+
+}
+
+
+
+.auto-card h4{
+
+    color:#D4AF37;
+
+    font-size:22px;
+
+    margin-top:15px;
+
+}
+
+
+
+
+/* ===========================
+   BOOKING SECTION
+=========================== */
+
+
+.booking{
+
+    background:#f5f7fa;
+
+}
+
+
+
+#bookingForm{
+
+    max-width:650px;
+
+    margin:auto;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 15px 30px rgba(0,0,0,.1);
+
+}
+
+
+
+#bookingForm input,
+#bookingForm select{
+
+    width:100%;
+
+    padding:15px;
+
+    margin-bottom:20px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:15px;
+
+}
+
+
+
+#bookingForm input:focus,
+#bookingForm select:focus{
+
+    border-color:#0F4C81;
+
+}
+
+
+
+
+#houseCall{
+
+    width:auto;
+
+    margin-right:10px;
+
+}
+
+
+
+#bookingForm label{
+
+    display:flex;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+    color:#555;
+
+}
+
+
+
+
+#bookingForm button{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:40px;
+
+    background:#0F4C81;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+
+#bookingForm button:hover{
+
+    background:#D4AF37;
+
+}
+
+
+
+#bookingMessage{
+
+    text-align:center;
+
+    margin-top:20px;
+
+    font-weight:600;
+
+}
+
+
+
+
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+
+@media(max-width:1100px){
+
+
+.auto-grid{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+
+}
+
+
+
+@media(max-width:768px){
+
+
+.auto-hero h1{
+
+font-size:40px;
+
+}
+
+
+.auto-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+
+#bookingForm{
+
+padding:25px;
+
+}
+
+
+}
