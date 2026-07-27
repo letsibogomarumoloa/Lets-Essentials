@@ -78,7 +78,16 @@ document.getElementById("houseCall");
 const addressBox =
 document.getElementById("addressBox");
 
+const serviceSelect =
+document.getElementById("service");
 
+
+const vehicleSelect =
+document.getElementById("vehicleType");
+
+
+const estimatedPrice =
+document.getElementById("estimatedPrice");
 
 
 
@@ -116,7 +125,137 @@ if(houseCallCheckbox){
 }
 
 
+// =======================================
+// PRICE CALCULATOR
+// =======================================
 
+
+function calculatePrice(){
+
+
+    let servicePrice =
+    Number(serviceSelect.value) || 0;
+
+
+
+    let vehicleExtra = 0;
+
+
+
+    if(vehicleSelect.value === "SUV"){
+
+        vehicleExtra = 40;
+
+    }
+
+
+    else if(vehicleSelect.value === "Van"){
+
+        vehicleExtra = 40;
+
+    }
+
+
+    else if(vehicleSelect.value === "7 Seater"){
+
+        vehicleExtra = 40;
+
+    }
+
+
+    else if(vehicleSelect.value === "Sprinter"){
+
+        vehicleExtra = 70;
+
+    }
+
+
+    else if(vehicleSelect.value === "Bus"){
+
+        vehicleExtra = 120;
+
+    }
+
+
+
+    let houseCallFee = 0;
+
+
+    if(houseCallCheckbox.checked){
+
+        houseCallFee = 50;
+
+    }
+
+
+
+
+    let total =
+
+    servicePrice +
+    vehicleExtra +
+    houseCallFee;
+
+
+
+
+
+    if(total > 0){
+
+
+        estimatedPrice.innerHTML =
+
+        `Estimated From: P${total}`;
+
+
+    }
+
+
+    else{
+
+
+        estimatedPrice.innerHTML =
+
+        "Select a service to calculate price.";
+
+
+    }
+
+
+
+}
+
+
+
+
+
+serviceSelect.addEventListener(
+
+"change",
+
+calculatePrice
+
+);
+
+
+
+vehicleSelect.addEventListener(
+
+"change",
+
+calculatePrice
+
+);
+
+
+
+houseCallCheckbox.addEventListener(
+
+"change",
+
+calculatePrice
+
+);
 
 
 
