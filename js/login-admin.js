@@ -6,7 +6,7 @@
 // Demo credentials
 // Replace with a real authentication system later.
 
-const ADMIN_EMAIL = "admin@letsessentials.co.bw";
+const ADMIN_EMAIL = "letsibogomarumoloa@gmail.com";
 const ADMIN_PASSWORD = "Lets@2026";
 
 const loginForm = document.getElementById("loginForm");
