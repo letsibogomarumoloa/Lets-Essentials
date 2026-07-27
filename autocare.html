@@ -1,1 +1,458 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lets Auto Care | Book Your Service</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="css/autocare.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<header>
+
+<nav class="navbar">
+
+
+<div class="logo">
+
+<img src="images/logo.png" alt="Lets Essentials">
+
+</div>
+
+
+<ul class="nav-links">
+
+<li>
+<a href="index.html">Home</a>
+</li>
+
+<li>
+<a href="autocare.html" class="active">
+Auto Care
+</a>
+</li>
+
+<li>
+<a href="shop.html">
+Shop
+</a>
+</li>
+
+<li>
+<a href="contact.html">
+Contact
+</a>
+</li>
+
+
+</ul>
+
+
+</nav>
+
+</header>
+
+
+
+
+<!-- HERO -->
+
+
+<section class="auto-hero">
+
+
+<div>
+
+<h1>
+Lets Auto Care
+</h1>
+
+<p>
+Professional vehicle cleaning, detailing and protection services designed to restore your vehicle's beauty.
+</p>
+
+
+<a href="#booking" class="btn-primary">
+Book Your Service
+</a>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- SERVICES -->
+
+
+<section class="auto-services">
+
+
+<div class="section-title">
+
+<h2>
+Our Auto Care Services
+</h2>
+
+<p>
+Choose the service your vehicle needs.
+</p>
+
+
+</div>
+
+
+
+<div class="auto-grid">
+
+
+<div class="auto-card">
+
+<h3>
+Ceramic Coating
+</h3>
+
+<p>
+Premium protection and long-lasting shine.
+</p>
+
+<h4>
+P2500
+</h4>
+
+</div>
+
+
+
+<div class="auto-card">
+
+<h3>
+Glazing
+</h3>
+
+<p>
+Enhanced paint protection and gloss.
+</p>
+
+<h4>
+P600 - P1200
+</h4>
+
+</div>
+
+
+
+
+<div class="auto-card">
+
+<h3>
+Full Valet
+</h3>
+
+<p>
+Complete interior and exterior cleaning.
+</p>
+
+<h4>
+P850 - P1500
+</h4>
+
+</div>
+
+
+
+
+<div class="auto-card">
+
+<h3>
+Engine Cleaning
+</h3>
+
+<p>
+Deep cleaning for your engine bay.
+</p>
+
+<h4>
+P350
+</h4>
+
+</div>
+
+
+
+
+<div class="auto-card">
+
+<h3>
+Interior Steaming
+</h3>
+
+<p>
+Professional interior refresh.
+</p>
+
+<h4>
+P380
+</h4>
+
+</div>
+
+
+
+
+<div class="auto-card">
+
+<h3>
+Headlight Restoration
+</h3>
+
+<p>
+Restore clarity and brightness.
+</p>
+
+<h4>
+P380
+</h4>
+
+</div>
+
+
+
+
+<div class="auto-card">
+
+<h3>
+Small Car Wash
+</h3>
+
+<p>
+Affordable professional wash.
+</p>
+
+<h4>
+P80
+</h4>
+
+</div>
+
+
+
+
+<div class="auto-card">
+
+<h3>
+SUV & Van Wash
+</h3>
+
+<p>
+Large vehicle cleaning.
+</p>
+
+<h4>
+P120
+</h4>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- BOOKING -->
+
+
+<section class="booking" id="booking">
+
+
+<div class="section-title">
+
+<h2>
+Book Your Appointment
+</h2>
+
+<p>
+Select your preferred service and time.
+</p>
+
+</div>
+
+
+
+<form id="bookingForm">
+
+
+
+<input 
+type="text"
+id="name"
+placeholder="Full Name"
+required>
+
+
+
+<input 
+type="tel"
+id="phone"
+placeholder="Phone Number"
+required>
+
+
+
+
+<select id="service" required>
+
+
+<option value="">
+Select Service
+</option>
+
+<option>
+Ceramic Coating
+</option>
+
+<option>
+Full Valet
+</option>
+
+<option>
+Interior Steaming
+</option>
+
+<option>
+Car Wash
+</option>
+
+
+</select>
+
+
+
+
+<input 
+type="date"
+id="date"
+required>
+
+
+
+
+<select id="time" required>
+
+
+<option value="">
+Select Time
+</option>
+
+<option>
+08:00
+</option>
+
+<option>
+09:00
+</option>
+
+<option>
+10:00
+</option>
+
+<option>
+11:00
+</option>
+
+<option>
+12:00
+</option>
+
+<option>
+13:00
+</option>
+
+<option>
+14:00
+</option>
+
+
+</select>
+
+
+
+
+<label>
+
+<input type="checkbox" id="houseCall">
+
+Request House Call
+
+</label>
+
+
+
+
+<button type="submit">
+
+Confirm Booking
+
+</button>
+
+
+
+<p id="bookingMessage"></p>
+
+
+
+</form>
+
+
+</section>
+
+
+
+
+
+<footer>
+
+
+<div class="copyright">
+
+© 2026 Lets Essentials. All Rights Reserved.
+
+</div>
+
+
+</footer>
+
+
+
+<script src="js/booking.js"></script>
+
+
+</body>
+
+</html>
