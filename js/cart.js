@@ -1,6 +1,7 @@
-// ==================================
-// LETS ESSENTIALS CART SYSTEM
-// ==================================
+// ======================================
+// LETS ESSENTIALS SHOP ORDER SYSTEM
+// cart.js
+// ======================================
 
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -18,10 +19,10 @@ document.getElementById("cartTotal");
 
 
 
-// Display cart
-
-
 function displayCart(){
+
+
+if(!cartItems) return;
 
 
 cartItems.innerHTML="";
@@ -42,10 +43,11 @@ Your cart is empty.
 </h3>
 `;
 
+
 cartTotal.innerHTML="P0";
 
-return;
 
+return;
 
 }
 
@@ -55,10 +57,11 @@ return;
 cart.forEach((item,index)=>{
 
 
-let itemTotal = item.price * item.quantity;
+let subtotal =
+item.price * item.quantity;
 
 
-total += itemTotal;
+total += subtotal;
 
 
 
@@ -71,58 +74,27 @@ cartItems.innerHTML +=
 
 <div>
 
-
 <h3>
-
 ${item.name}
-
 </h3>
 
 
 <p>
-
-Price:
-P${item.price}
-
+Price: P${item.price}
 </p>
-
-
-
-<div class="quantity">
-
-
-<button onclick="changeQuantity(${index},-1)">
--
-</button>
-
-
-<span>
-
-${item.quantity}
-
-</span>
-
-
-<button onclick="changeQuantity(${index},1)">
-+
-</button>
-
-
-</div>
 
 
 <p>
-
-Subtotal:
-
-P${itemTotal}
-
+Quantity: ${item.quantity}
 </p>
 
 
+<p>
+Subtotal: P${subtotal}
+</p>
+
 
 </div>
-
 
 
 
@@ -145,7 +117,6 @@ Remove
 
 
 cartTotal.innerHTML =
-
 "P" + total;
 
 
@@ -156,50 +127,12 @@ cartTotal.innerHTML =
 
 
 
-// Increase / decrease quantity
-
-
-function changeQuantity(index,change){
-
-
-
-cart[index].quantity += change;
-
-
-
-
-if(cart[index].quantity <=0){
-
-
-cart.splice(index,1);
-
-
-}
-
-
-
-
-saveCart();
-
-
-displayCart();
-
-
-}
-
-
-
-
-
-// Remove product
 
 
 function removeItem(index){
 
 
-
 cart.splice(index,1);
-
 
 
 saveCart();
@@ -232,14 +165,14 @@ JSON.stringify(cart)
 
 
 
-// Checkout
+
 
 
 function checkout(){
 
 
 
-if(cart.length===0){
+if(cart.length === 0){
 
 
 document.getElementById("orderMessage").innerHTML=
@@ -249,8 +182,9 @@ document.getElementById("orderMessage").innerHTML=
 
 return;
 
-
 }
+
+
 
 
 
@@ -274,11 +208,10 @@ if(!name || !phone || !address){
 
 document.getElementById("orderMessage").innerHTML=
 
-"❌ Please complete all details.";
+"❌ Please complete your details.";
 
 
 return;
-
 
 }
 
@@ -286,32 +219,55 @@ return;
 
 
 
-let orderNumber =
+
+
+let total = 0;
+
+
+cart.forEach(item=>{
+
+
+total += item.price * item.quantity;
+
+
+});
+
+
+
+
+
+
+
+
+let order = {
+
+
+id:
 
 "LE-" +
 
-Math.floor(
-
-Math.random()*90000+10000
-
-);
+Math.floor(Math.random()*90000+10000),
 
 
+customer:name,
 
 
+phone:phone,
 
-let orderData = {
 
+address:address,
 
-id:orderNumber,
-
-status:"Processing",
-
-date:new Date().toLocaleDateString(),
 
 products:cart,
 
-customer:name
+
+total:total,
+
+
+status:"Processing",
+
+
+date:new Date().toLocaleDateString()
 
 
 };
@@ -320,13 +276,157 @@ customer:name
 
 
 
+
+
+
+
+// Get existing orders
+
+
+let orders = JSON.parse(
+
+localStorage.getItem("orders")
+
+) || [];
+
+
+
+
+
+
+// Save order
+
+
+orders.push(order);
+
+
+
+localStorage.setItem(
+
+"orders",
+
+JSON.stringify(orders)
+
+);
+
+
+
+
+
+
+// Save latest order for tracking
+
+
 localStorage.setItem(
 
 "orderData",
 
-JSON.stringify(orderData)
+JSON.stringify(order)
 
 );
+
+
+
+
+
+
+
+
+// WhatsApp message
+
+
+let message =
+
+`
+
+Hello Lets Essentials 👋
+
+
+I would like to place an order.
+
+
+Order Number:
+
+${order.id}
+
+
+Customer:
+
+${name}
+
+
+Phone:
+
+${phone}
+
+
+Address:
+
+${address}
+
+
+
+Products:
+
+`;
+
+
+
+
+
+cart.forEach(item=>{
+
+
+message +=
+
+`
+
+${item.name}
+
+x${item.quantity}
+
+- P${item.price}
+
+`;
+
+});
+
+
+
+
+message +=
+
+`
+
+Total:
+
+P${total}
+
+
+Thank you.
+
+`;
+
+
+
+
+
+
+
+let whatsappNumber =
+"267XXXXXXXX";
+
+
+
+let whatsappLink =
+
+"https://wa.me/" +
+
+whatsappNumber +
+
+"?text=" +
+
+encodeURIComponent(message);
 
 
 
@@ -337,25 +437,53 @@ document.getElementById("orderMessage").innerHTML=
 
 `
 
-✅ Order Created!
+✅ Order Created Successfully!
+
 
 <br><br>
+
 
 Order Number:
 
-<b>${orderNumber}</b>
+<b>${order.id}</b>
+
 
 <br><br>
+
 
 Status:
 
 🟡 Processing
 
-<br><br>
-
-You can now track your order.
-
 `;
+
+
+
+
+
+
+
+let whatsappButton =
+document.getElementById("whatsappOrder");
+
+
+
+if(whatsappButton){
+
+
+whatsappButton.href = whatsappLink;
+
+
+whatsappButton.innerHTML=
+
+"Send Order Through WhatsApp";
+
+
+whatsappButton.style.display="block";
+
+
+}
+
 
 
 
@@ -369,6 +497,8 @@ saveCart();
 
 
 }
+
+
 
 
 
