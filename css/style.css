@@ -520,3 +520,34 @@ MOBILE
 
 
 }
+
+.profile-card{
+
+background:white;
+
+padding:25px;
+
+margin:20px auto;
+
+max-width:700px;
+
+border-radius:20px;
+
+box-shadow:
+0 8px 25px rgba(0,0,0,.08);
+
+}
+
+
+.profile-card h3{
+
+margin-bottom:15px;
+
+}
+
+
+.profile-card p{
+
+line-height:2;
+
+}
