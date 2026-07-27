@@ -185,3 +185,26 @@ background:#0F4C81;
 color:white;
 
 }
+
+.timeline p{
+
+padding:15px;
+
+margin:10px 0;
+
+background:#f5f7fa;
+
+border-radius:15px;
+
+font-weight:600;
+
+}
+
+
+.timeline .active{
+
+background:#0F4C81;
+
+color:white;
+
+}
