@@ -1,42 +1,58 @@
-// ===============================
+// =======================================
 // LETS AUTO CARE BOOKING SYSTEM
-// ===============================
+// =======================================
 
 
-const bookedSlots = [
+// Temporary booking database
+// Later this will connect to a real database
 
-{
-date:"2026-08-15",
-time:"10:00"
-},
+let bookedSlots = [
 
-{
-date:"2026-08-15",
-time:"11:00"
-},
+    {
+        date: "2026-08-15",
+        time: "10:00"
+    },
 
-{
-date:"2026-08-20",
-time:"14:00"
-}
+    {
+        date: "2026-08-15",
+        time: "11:00"
+    },
+
+    {
+        date: "2026-08-20",
+        time: "14:00"
+    }
 
 ];
 
 
+
+// Available working hours
 
 const availableTimes = [
 
-"08:00",
-"09:00",
-"10:00",
-"11:00",
-"12:00",
-"13:00",
-"14:00",
-"15:00"
+    "08:00",
+    "09:00",
+    "10:00",
+    "11:00",
+    "12:00",
+    "13:00",
+    "14:00",
+    "15:00"
 
 ];
 
+
+
+
+
+// =======================================
+// GET HTML ELEMENTS
+// =======================================
+
+
+const bookingForm =
+document.getElementById("bookingForm");
 
 
 const dateInput =
@@ -51,58 +67,36 @@ const timeInput =
 document.getElementById("time");
 
 
+const bookingMessage =
+document.getElementById("bookingMessage");
 
 
-// Generate time slots when date changes
-
-dateInput.addEventListener("change",()=>{
-
-
-    timeContainer.innerHTML="";
+const houseCallCheckbox =
+document.getElementById("houseCall");
 
 
-    let selectedDate =
-    dateInput.value;
-
-
-
-    availableTimes.forEach(time=>{
-
-
-        let slot =
-        document.createElement("div");
-
-
-        slot.classList.add("time-slot");
-
-
-
-        let taken =
-        bookedSlots.some(booked=>
-
-            booked.date === selectedDate &&
-            booked.time === time
-
-        );
-
-
-
-
-        slot.innerHTML =
-        taken
-        ?
-        `${time}<br>❌ Booked`
-        :
-        `${time}<br>🟢 Available`;
+const addressBox =
+document.getElementById("addressBox");
 
 
 
 
 
-        if(taken){
+// =======================================
+// HOUSE CALL ADDRESS DISPLAY
+// =======================================
 
 
-            slot.classList.add("booked");
+if(houseCallCheckbox){
+
+
+    houseCallCheckbox.addEventListener("change",()=>{
+
+
+        if(houseCallCheckbox.checked){
+
+
+            addressBox.style.display="block";
 
 
         }
@@ -110,23 +104,111 @@ dateInput.addEventListener("change",()=>{
         else{
 
 
+            addressBox.style.display="none";
+
+
+        }
+
+
+    });
+
+
+}
+
+
+
+
+
+
+// =======================================
+// GENERATE AVAILABLE TIME SLOTS
+// =======================================
+
+
+if(dateInput){
+
+
+dateInput.addEventListener("change",()=>{
+
+
+    timeContainer.innerHTML="";
+
+
+    const selectedDate =
+    dateInput.value;
+
+
+
+    availableTimes.forEach(time=>{
+
+
+        const slot =
+        document.createElement("div");
+
+
+        slot.classList.add("time-slot");
+
+
+
+        const alreadyBooked =
+        bookedSlots.some(booking =>
+
+            booking.date === selectedDate &&
+            booking.time === time
+
+        );
+
+
+
+
+        if(alreadyBooked){
+
+
+            slot.classList.add("booked");
+
+
+            slot.innerHTML =
+            `
+            ${time}
+            <br>
+            ❌ Fully Booked
+            `;
+
+
+        }
+
+
+        else{
+
+
+            slot.innerHTML =
+            `
+            ${time}
+            <br>
+            🟢 Available
+            `;
+
+
+
             slot.addEventListener("click",()=>{
 
 
                 document
                 .querySelectorAll(".time-slot")
-                .forEach(item=>
+                .forEach(item=>{
 
-                    item.classList.remove("selected")
 
-                );
+                    item.classList.remove("selected");
+
+
+                });
 
 
 
                 slot.classList.add("selected");
 
 
-                timeInput.value=time;
+                timeInput.value = time;
 
 
             });
@@ -143,39 +225,67 @@ dateInput.addEventListener("change",()=>{
     });
 
 
+
 });
 
 
+}
 
 
 
 
-// Booking submission
-
-
-const form =
-document.getElementById("bookingForm");
-
-
-const message =
-document.getElementById("bookingMessage");
 
 
 
-form.addEventListener("submit",(e)=>{
+// =======================================
+// FORM SUBMISSION
+// =======================================
 
 
-e.preventDefault();
+if(bookingForm){
 
 
+bookingForm.addEventListener("submit",(event)=>{
+
+
+event.preventDefault();
+
+
+
+
+
+// Customer details
 
 const name =
 document.getElementById("name").value;
 
 
+const phone =
+document.getElementById("phone").value;
+
+
+
+// Service details
+
 const service =
 document.getElementById("service").value;
 
+
+
+// Vehicle details
+
+const vehicle =
+document.getElementById("vehicleType").value;
+
+
+const registration =
+document.getElementById("registration").value;
+
+
+
+
+
+// Booking details
 
 const date =
 dateInput.value;
@@ -186,18 +296,39 @@ timeInput.value;
 
 
 
+
+
+// House call details
+
+const houseCall =
+houseCallCheckbox.checked;
+
+
+const address =
+document.getElementById("address").value;
+
+
+
+
+
+
+// Check if time was selected
+
+
 if(!time){
 
 
-message.style.color="red";
+    bookingMessage.style.color="red";
 
 
-message.innerHTML=
+    bookingMessage.innerHTML =
 
-"❌ Please select an available time slot.";
+    `
+    ❌ Please select an available time slot.
+    `;
 
 
-return;
+    return;
 
 
 }
@@ -206,10 +337,55 @@ return;
 
 
 
+
+
+// Check again before confirming
+
+const duplicateBooking =
+bookedSlots.some(booking =>
+
+
+booking.date === date &&
+booking.time === time
+
+
+);
+
+
+
+if(duplicateBooking){
+
+
+    bookingMessage.style.color="red";
+
+
+    bookingMessage.innerHTML =
+
+    `
+    ❌ Sorry, this slot has just been booked.
+    Please choose another time.
+    `;
+
+
+    return;
+
+
+}
+
+
+
+
+
+
+
+// Save booking temporarily
+
+
 bookedSlots.push({
 
-date:date,
-time:time
+    date:date,
+
+    time:time
 
 });
 
@@ -217,51 +393,143 @@ time:time
 
 
 
-message.style.color="green";
 
 
-message.innerHTML=
+// Successful booking message
+
+
+bookingMessage.style.color="green";
+
+
+bookingMessage.innerHTML =
+
 
 `
+
+<h3>
 ✅ Booking Confirmed!
+</h3>
 
-<br><br>
-
-Thank you ${name}.
 
 <br>
 
-Service:
+
+Thank you <b>${name}</b>
+
+
+<br><br>
+
+
+<b>Phone:</b>
+${phone}
+
+
+<br><br>
+
+
+<b>Service:</b>
 ${service}
 
-<br>
-
-Date:
-${date}
 
 <br>
 
-Time:
-${time}
+
+<b>Vehicle:</b>
+${vehicle}
+
+
+<br>
+
+
+<b>Registration:</b>
+${registration}
+
 
 <br><br>
 
-We look forward to serving you.
-`;
+
+<b>Date:</b>
+${date}
+
+
+<br>
+
+
+<b>Time:</b>
+${time}
 
 
 
-form.reset();
+${
 
+houseCall
 
-timeContainer.innerHTML=
+?
 
 `
-<p class="choose-date">
-Please select a date first.
-</p>
+
+<br><br>
+
+🏠 <b>House Call Requested</b>
+
+
+<br>
+
+Location:
+
+${address}
+
+
+<br>
+
+Transport fee will be confirmed.
+
+`
+
+:
+
+""
+
+}
+
+
+
+<br><br>
+
+
+We look forward to giving your vehicle the care it deserves.
+
 `;
+
+
+
+
+
+
+// Clear form
+
+bookingForm.reset();
+
+
+
+timeContainer.innerHTML =
+
+`
+
+<p class="choose-date">
+
+Please select a date first.
+
+</p>
+
+`;
+
+
+
+addressBox.style.display="none";
 
 
 
 });
+
+}
