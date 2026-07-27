@@ -451,3 +451,44 @@ HOUSE CALL ADDRESS
     border:1px solid #ddd;
 
 }
+
+/* ===========================
+PRICE ESTIMATOR
+=========================== */
+
+
+.price-box{
+
+    background:#f8f9fb;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    margin:25px 0;
+
+    text-align:center;
+
+    border-left:5px solid #D4AF37;
+
+}
+
+
+.price-box h3{
+
+    color:#0F4C81;
+
+    margin-bottom:10px;
+
+}
+
+
+#estimatedPrice{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:#D4AF37;
+
+}
