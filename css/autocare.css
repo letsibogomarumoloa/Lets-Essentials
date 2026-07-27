@@ -317,3 +317,106 @@ padding:25px;
 
 
 }
+
+/* ===========================
+   TIME SLOT SYSTEM
+=========================== */
+
+
+.time-section{
+
+    margin-bottom:20px;
+
+}
+
+
+.time-section label{
+
+    display:block;
+
+    font-weight:600;
+
+    margin-bottom:15px;
+
+}
+
+
+
+#timeSlots{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:10px;
+
+}
+
+
+
+.time-slot{
+
+    padding:12px;
+
+    border-radius:10px;
+
+    border:2px solid #0F4C81;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-weight:600;
+
+}
+
+
+
+.time-slot:hover{
+
+    background:#0F4C81;
+
+    color:white;
+
+}
+
+
+
+.time-slot.selected{
+
+    background:#0F4C81;
+
+    color:white;
+
+}
+
+
+
+.time-slot.booked{
+
+    background:#ddd;
+
+    color:#777;
+
+    border-color:#ddd;
+
+    cursor:not-allowed;
+
+}
+
+
+
+
+@media(max-width:768px){
+
+#timeSlots{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+}
