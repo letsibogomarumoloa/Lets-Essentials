@@ -1,6 +1,8 @@
 // ======================================
-// LETS AUTO CARE ADMIN CALENDAR
+// LETS AUTO CARE ADMIN BOOKINGS
+// STATUS NOTIFICATIONS
 // ======================================
+
 
 
 if(localStorage.getItem("adminLoggedIn") !== "true"){
@@ -8,6 +10,8 @@ if(localStorage.getItem("adminLoggedIn") !== "true"){
 window.location.href="login.html";
 
 }
+
+
 
 
 
@@ -19,11 +23,43 @@ localStorage.getItem("bookings")
 
 
 
+
+
 const SLOT_LIMIT = 3;
 
 
 
-const calendar = document.getElementById("bookingCalendar");
+const calendar =
+
+document.getElementById("bookingCalendar");
+
+
+
+const notificationBox =
+
+document.getElementById("notificationBox");
+
+
+
+
+
+
+function saveBookings(){
+
+
+localStorage.setItem(
+
+"bookings",
+
+JSON.stringify(bookings)
+
+);
+
+
+}
+
+
+
 
 
 
@@ -43,244 +79,215 @@ calendar.innerHTML="";
 
 
 
-if(bookings.length === 0){
+bookings.forEach((booking,index)=>{
 
 
-calendar.innerHTML=
 
-`
+let box = document.createElement("div");
 
-<h3>
-No bookings available.
-</h3>
 
-`;
+box.className="booking-item";
 
-return;
 
-}
 
-
-
-
-
-// Group bookings by date
-
-
-let grouped = {};
-
-
-
-
-bookings.forEach(booking=>{
-
-
-
-if(!grouped[booking.date]){
-
-
-grouped[booking.date]=[];
-
-}
-
-
-
-grouped[booking.date].push(booking);
-
-
-
-});
-
-
-
-
-
-
-Object.keys(grouped).forEach(date=>{
-
-
-
-
-
-let dayBox = document.createElement("div");
-
-
-
-dayBox.className="day-box";
-
-
-
-
-
-dayBox.innerHTML =
-
-`
-
-<h2>
-
-${date}
-
-</h2>
-
-`;
-
-
-
-
-
-
-
-
-let times = [
-
-"08:00",
-
-"10:00",
-
-"12:00",
-
-"14:00",
-
-"16:00"
-
-];
-
-
-
-
-
-times.forEach(time=>{
-
-
-
-let dayBookings = grouped[date].filter(item=>{
-
-
-return (
-
-item.time === time &&
-
-item.status !== "Cancelled"
-
-);
-
-
-});
-
-
-
-
-
-let available =
-
-SLOT_LIMIT - dayBookings.length;
-
-
-
-
-
-
-
-
-let timeBox = document.createElement("div");
-
-
-
-timeBox.className="time-box";
-
-
-
-
-
-
-
-if(dayBookings.length > 0){
-
-
-
-timeBox.innerHTML =
+box.innerHTML =
 
 `
 
 <h3>
 
-${time}
+${booking.name}
 
 </h3>
 
 
 <p>
 
-${dayBookings.length}/3 slots booked
+🚗 ${booking.service}
 
 </p>
 
 
-${
+<p>
 
-dayBookings.map(item=>`
+Vehicle:
+${booking.vehicle}
 
-<div class="booking-item">
+</p>
 
-<strong>
 
-${item.name}
+<p>
 
-</strong>
+Date:
+${booking.date}
 
-<br>
+</p>
 
-${item.service}
 
-<br>
+<p>
 
-${item.vehicle}
+Time:
+${booking.time}
 
-<br>
+</p>
+
+
+
+<p>
 
 Status:
 
-${item.status}
+<strong>
 
-</div>
+${booking.status}
 
-`).join("")
-
-}
-
-
-
-`;
-
-
-
-}
-
-else{
-
-
-
-timeBox.innerHTML =
-
-
-`
-
-<h3>
-
-${time}
-
-</h3>
-
-
-<p>
-
-Available:
-
-${available} slots
+</strong>
 
 </p>
 
 
+
+
+<select onchange="changeBookingStatus(${index},this.value)">
+
+
+
+<option value="Pending"
+${booking.status==="Pending"?"selected":""}>
+
+Pending
+
+</option>
+
+
+
+<option value="Confirmed"
+${booking.status==="Confirmed"?"selected":""}>
+
+Confirmed
+
+</option>
+
+
+
+<option value="Completed"
+${booking.status==="Completed"?"selected":""}>
+
+Completed
+
+</option>
+
+
+
+<option value="Cancelled"
+${booking.status==="Cancelled"?"selected":""}>
+
+Cancelled
+
+</option>
+
+
+
+</select>
+
+
+`;
+
+
+
+
+calendar.appendChild(box);
+
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+function changeBookingStatus(index,status){
+
+
+
+bookings[index].status=status;
+
+
+
+saveBookings();
+
+
+
+generateNotification(bookings[index]);
+
+
+
+loadCalendar();
+
+
+
+}
+
+
+
+
+
+
+
+
+function generateNotification(booking){
+
+
+
+let message="";
+
+
+
+
+
+if(booking.status==="Confirmed"){
+
+
+message=
+
+`
+
+Hello ${booking.name} 👋
+
+
+Your Lets Auto Care booking has been confirmed.
+
+
+Service:
+
+${booking.service}
+
+
+Vehicle:
+
+${booking.vehicle}
+
+
+Date:
+
+${booking.date}
+
+
+Time:
+
+${booking.time}
+
+
+We look forward to serving you.
+
+Thank you for choosing Lets Essentials.
+
 `;
 
 
@@ -292,22 +299,127 @@ ${available} slots
 
 
 
-dayBox.appendChild(timeBox);
+
+if(booking.status==="Completed"){
 
 
 
-});
+message=
+
+`
+
+Hello ${booking.name} 👋
+
+
+Your vehicle service has been completed.
+
+
+Thank you for trusting Lets Essentials.
+
+
+We appreciate your support.
+
+`;
+
+
+
+}
 
 
 
 
 
 
-calendar.appendChild(dayBox);
+
+if(booking.status==="Cancelled"){
 
 
 
-});
+message=
+
+`
+
+Hello ${booking.name}.
+
+
+Unfortunately your Lets Auto Care booking has been cancelled.
+
+
+Please contact us to reschedule.
+
+`;
+
+
+
+}
+
+
+
+
+
+
+
+
+if(message){
+
+
+
+let whatsappLink =
+
+
+"https://wa.me/" +
+
+booking.phone +
+
+"?text=" +
+
+encodeURIComponent(message);
+
+
+
+
+
+
+notificationBox.innerHTML =
+
+`
+
+<div class="notification-card">
+
+
+<h3>
+Customer Notification
+</h3>
+
+
+<p>
+${message.replace(/\n/g,"<br>")}
+</p>
+
+
+
+<a 
+
+href="${whatsappLink}"
+
+target="_blank"
+
+class="btn">
+
+Send WhatsApp Message
+
+</a>
+
+
+</div>
+
+`;
+
+
+
+}
+
+
 
 
 
