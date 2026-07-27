@@ -1,1 +1,541 @@
+/* ===========================
+   GOOGLE FONT
+=========================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ===========================
+   RESET
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f8f9fb;
+    color:#222;
+    line-height:1.6;
+}
+
+img{
+    width:100%;
+    display:block;
+}
+
+a{
+    text-decoration:none;
+}
+
+ul{
+    list-style:none;
+}
+
+section{
+    padding:90px 8%;
+}
+
+/* ===========================
+   NAVIGATION
+=========================== */
+
+header{
+    position:fixed;
+    width:100%;
+    top:0;
+    left:0;
+    z-index:1000;
+}
+
+.navbar{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 8%;
+
+    background:rgba(255,255,255,.95);
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+}
+
+.logo img{
+    width:180px;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+
+    color:#333;
+    font-weight:500;
+    transition:.3s;
+
+}
+
+.nav-links a:hover,
+.nav-links .active{
+
+    color:#0f4c81;
+
+}
+
+.menu-btn{
+
+    display:none;
+    font-size:26px;
+    cursor:pointer;
+
+}
+
+/* ===========================
+   HERO
+=========================== */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+
+    background:
+    linear-gradient(rgba(15,76,129,.75),
+    rgba(15,76,129,.75)),
+    url("../images/hero.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    color:white;
+
+}
+
+.hero-content{
+
+    max-width:700px;
+
+}
+
+.hero h1{
+
+    font-size:65px;
+    line-height:1.15;
+    margin-bottom:25px;
+
+}
+
+.hero h1 span{
+
+    color:#FFD54F;
+
+}
+
+.hero p{
+
+    font-size:19px;
+
+    margin-bottom:35px;
+
+}
+
+.hero-buttons{
+
+    display:flex;
+    gap:20px;
+
+}
+
+.btn-primary{
+
+    background:#FFD54F;
+    color:#111;
+
+    padding:15px 35px;
+
+    border-radius:40px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+.btn-primary:hover{
+
+    background:white;
+
+    transform:translateY(-4px);
+
+}
+
+.btn-secondary{
+
+    border:2px solid white;
+
+    color:white;
+
+    padding:15px 35px;
+
+    border-radius:40px;
+
+    transition:.35s;
+
+}
+
+.btn-secondary:hover{
+
+    background:white;
+
+    color:#0f4c81;
+
+}
+
+/* ===========================
+   SECTION TITLE
+=========================== */
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+.section-title h2{
+
+    font-size:40px;
+
+    color:#0f4c81;
+
+}
+
+.section-title p{
+
+    margin-top:10px;
+
+    color:#666;
+
+}
+
+/* ===========================
+   SERVICES
+=========================== */
+
+.service-container{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:30px;
+
+}
+
+.service-card{
+
+    background:white;
+
+    padding:40px 30px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.service-card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.service-card i{
+
+    font-size:50px;
+
+    color:#0f4c81;
+
+    margin-bottom:20px;
+
+}
+
+.service-card h3{
+
+    margin-bottom:15px;
+
+}
+
+.service-card p{
+
+    color:#666;
+
+    margin-bottom:20px;
+
+}
+
+.service-card a{
+
+    color:#0f4c81;
+
+    font-weight:600;
+
+}
+
+/* ===========================
+   WHY CHOOSE US
+=========================== */
+
+.why-us{
+
+    background:white;
+
+}
+
+.why-container{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+    gap:25px;
+
+}
+
+.why-card{
+
+    padding:35px;
+
+    text-align:center;
+
+    border-radius:18px;
+
+    background:#f8f9fb;
+
+}
+
+.why-card i{
+
+    font-size:42px;
+
+    color:#FFD54F;
+
+    margin-bottom:20px;
+
+}
+
+.why-card h3{
+
+    margin-bottom:12px;
+
+}
+
+/* ===========================
+   REVIEWS
+=========================== */
+
+.review-box{
+
+    max-width:700px;
+
+    margin:auto;
+
+    background:white;
+
+    padding:45px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.review-box i{
+
+    font-size:45px;
+
+    color:#FFD54F;
+
+    margin-bottom:20px;
+
+}
+
+.review-box p{
+
+    font-size:18px;
+
+    margin-bottom:20px;
+
+}
+
+/* ===========================
+   CTA
+=========================== */
+
+.cta{
+
+    text-align:center;
+
+    background:#0f4c81;
+
+    color:white;
+
+}
+
+.cta h2{
+
+    font-size:45px;
+
+    margin-bottom:20px;
+
+}
+
+.cta p{
+
+    margin-bottom:35px;
+
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+footer{
+
+    background:#111827;
+
+    color:white;
+
+    padding:70px 8% 30px;
+
+}
+
+.footer-content{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:40px;
+
+    margin-bottom:40px;
+
+}
+
+.footer-content h3{
+
+    margin-bottom:18px;
+
+}
+
+.footer-content a{
+
+    display:block;
+
+    color:#ddd;
+
+    margin-bottom:10px;
+
+}
+
+.footer-content a:hover{
+
+    color:#FFD54F;
+
+}
+
+.copyright{
+
+    border-top:1px solid rgba(255,255,255,.1);
+
+    text-align:center;
+
+    padding-top:20px;
+
+    color:#bbb;
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:992px){
+
+.nav-links{
+
+display:none;
+
+}
+
+.menu-btn{
+
+display:block;
+
+}
+
+.hero h1{
+
+font-size:48px;
+
+}
+
+.hero-buttons{
+
+flex-direction:column;
+
+}
+
+}
+
+@media(max-width:768px){
+
+section{
+
+padding:70px 6%;
+
+}
+
+.hero{
+
+text-align:center;
+
+}
+
+.hero h1{
+
+font-size:38px;
+
+}
+
+.section-title h2{
+
+font-size:32px;
+
+}
+
+.cta h2{
+
+font-size:34px;
+
+}
+
+  }
