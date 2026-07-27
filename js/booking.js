@@ -1,6 +1,6 @@
 // =========================================
-// LETS ESSENTIALS AUTO CARE BOOKING SYSTEM
-// booking.js
+// LETS AUTO CARE BOOKING SYSTEM
+// Capacity Based Booking
 // =========================================
 
 
@@ -13,10 +13,6 @@ const whatsappBtn = document.getElementById("whatsappBtn");
 
 
 
-
-
-// Existing bookings
-
 let bookings = JSON.parse(
 
 localStorage.getItem("bookings")
@@ -26,11 +22,17 @@ localStorage.getItem("bookings")
 
 
 
+// Maximum vehicles per time slot
+
+const SLOT_LIMIT = 3;
 
 
-// Submit Booking
+
+
+
 
 if(bookingForm){
+
 
 
 bookingForm.addEventListener("submit", function(e){
@@ -42,7 +44,7 @@ e.preventDefault();
 
 
 
-// Get customer details
+// Collect information
 
 
 let name =
@@ -95,10 +97,14 @@ document.getElementById("address").value;
 
 
 
-// Check availability
+// ==============================
+// CHECK SLOT AVAILABILITY
+// ==============================
 
 
-let alreadyBooked = bookings.some(booking => {
+
+let bookingsForSlot = bookings.filter(booking => {
+
 
 
 return (
@@ -112,13 +118,15 @@ booking.status !== "Cancelled"
 );
 
 
+
 });
 
 
 
 
 
-if(alreadyBooked){
+
+if(bookingsForSlot.length >= SLOT_LIMIT){
 
 
 
@@ -126,9 +134,11 @@ bookingMessage.innerHTML =
 
 `
 
-❌ Sorry, this time slot is already booked.
+❌ This time slot is fully booked.
 
-Please choose another time.
+<br><br>
+
+Please choose another date or time.
 
 `;
 
@@ -139,17 +149,16 @@ bookingMessage.style.color="red";
 
 return;
 
-
 }
 
 
 
 
 
+// ==============================
+// CREATE BOOKING
+// ==============================
 
-
-
-// Create booking object
 
 
 let newBooking = {
@@ -188,12 +197,15 @@ houseCall:
 houseCall ? "Yes" : "No",
 
 
+
 address:
 
 houseCall ? address : "Not Required",
 
 
+
 status:"Pending",
+
 
 
 created:
@@ -202,8 +214,6 @@ new Date().toLocaleString()
 
 
 };
-
-
 
 
 
@@ -231,33 +241,54 @@ JSON.stringify(bookings)
 
 
 
+// Remaining spaces
 
-// Confirmation message
+
+let remaining =
+
+SLOT_LIMIT - (bookingsForSlot.length + 1);
+
+
+
+
+
+
 
 
 bookingMessage.innerHTML =
 
 `
 
-✅ Booking Submitted Successfully!
+✅ Booking Successfully Submitted!
 
 <br><br>
+
 
 Booking Number:
 
 <b>${newBooking.id}</b>
 
+
 <br><br>
 
-Status:
 
-🟡 Pending Confirmation
+Time Slot:
+
+${date} at ${time}
+
+
+<br><br>
+
+
+Remaining spaces:
+
+${remaining}
 
 `;
 
 
 
-bookingMessage.style.color="#0F4C81";
+bookingMessage.style.color="green";
 
 
 
@@ -265,9 +296,7 @@ bookingMessage.style.color="#0F4C81";
 
 
 
-
-// WhatsApp Message
-
+// WhatsApp message
 
 
 let message =
@@ -334,11 +363,9 @@ Thank you.
 
 
 
-
 let whatsappNumber =
 
 "267XXXXXXXX";
-
 
 
 
@@ -364,12 +391,10 @@ if(whatsappBtn){
 whatsappBtn.href = whatsappLink;
 
 
-whatsappBtn.style.display="block";
+whatsappBtn.style.display="inline-block";
 
 
 }
-
-
 
 
 
@@ -381,6 +406,7 @@ bookingForm.reset();
 
 
 });
+
 
 
 }
