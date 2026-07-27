@@ -1,7 +1,6 @@
-// =======================================
-// LETS ESSENTIALS BOOKING MANAGEMENT
-// =======================================
-
+// ======================================
+// LETS AUTO CARE ADMIN CALENDAR
+// ======================================
 
 
 if(localStorage.getItem("adminLoggedIn") !== "true"){
@@ -12,44 +11,49 @@ window.location.href="login.html";
 
 
 
+let bookings = JSON.parse(
 
-let bookings =
+localStorage.getItem("bookings")
 
-JSON.parse(localStorage.getItem("bookings")) || [];
-
-
-
-const bookingList =
-
-document.getElementById("bookingList");
+) || [];
 
 
 
-
-
-function displayBookings(data = bookings){
-
-
-
-bookingList.innerHTML="";
+const SLOT_LIMIT = 3;
 
 
 
-if(data.length===0){
+const calendar = document.getElementById("bookingCalendar");
 
 
-bookingList.innerHTML=
+
+
+
+function loadCalendar(){
+
+
+
+if(!calendar) return;
+
+
+
+calendar.innerHTML="";
+
+
+
+
+
+if(bookings.length === 0){
+
+
+calendar.innerHTML=
 
 `
-<tr>
 
-<td colspan="8">
+<h3>
+No bookings available.
+</h3>
 
-No bookings found.
-
-</td>
-
-</tr>
 `;
 
 return;
@@ -60,220 +64,103 @@ return;
 
 
 
-data.forEach((booking,index)=>{
+// Group bookings by date
 
 
-bookingList.innerHTML +=
+let grouped = {};
+
+
+
+
+bookings.forEach(booking=>{
+
+
+
+if(!grouped[booking.date]){
+
+
+grouped[booking.date]=[];
+
+}
+
+
+
+grouped[booking.date].push(booking);
+
+
+
+});
+
+
+
+
+
+
+Object.keys(grouped).forEach(date=>{
+
+
+
+
+
+let dayBox = document.createElement("div");
+
+
+
+dayBox.className="day-box";
+
+
+
+
+
+dayBox.innerHTML =
 
 `
 
-<tr>
+<h2>
 
+${date}
 
-<td>
-
-${booking.name || "Unknown"}
-
-</td>
-
-
-<td>
-
-${booking.phone || "-"}
-
-</td>
-
-
-
-<td>
-
-${booking.service || "-"}
-
-</td>
-
-
-
-<td>
-
-${booking.vehicle || "-"}
-
-</td>
-
-
-
-<td>
-
-${booking.date || "-"}
-
-</td>
-
-
-
-<td>
-
-${booking.time || "-"}
-
-</td>
-
-
-
-<td>
-
-<span class="status pending">
-
-${booking.status || "Pending"}
-
-</span>
-
-</td>
-
-
-
-
-<td>
-
-
-<button 
-class="btn btn-success"
-onclick="completeBooking(${index})">
-
-Complete
-
-</button>
-
-
-
-<button 
-class="btn btn-danger"
-onclick="cancelBooking(${index})">
-
-Cancel
-
-</button>
-
-
-
-</td>
-
-
-
-</tr>
+</h2>
 
 `;
 
 
 
-});
 
 
 
-}
 
 
+let times = [
 
+"08:00",
 
+"10:00",
 
+"12:00",
 
+"14:00",
 
-function completeBooking(index){
+"16:00"
 
+];
 
 
-bookings[index].status="Completed";
 
 
 
-saveBookings();
+times.forEach(time=>{
 
 
 
-displayBookings();
-
-
-
-}
-
-
-
-
-
-
-
-function cancelBooking(index){
-
-
-
-if(confirm("Cancel this booking?")){
-
-
-bookings[index].status="Cancelled";
-
-
-saveBookings();
-
-
-displayBookings();
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-function saveBookings(){
-
-
-
-localStorage.setItem(
-
-"bookings",
-
-JSON.stringify(bookings)
-
-);
-
-
-}
-
-
-
-
-
-
-
-// SEARCH
-
-document
-.getElementById("searchBooking")
-.addEventListener("input",function(){
-
-
-
-let value =
-this.value.toLowerCase();
-
-
-
-
-let filtered = bookings.filter(item=>{
+let dayBookings = grouped[date].filter(item=>{
 
 
 return (
 
-(item.name &&
-item.name.toLowerCase().includes(value))
+item.time === time &&
 
-||
-
-(item.service &&
-item.service.toLowerCase().includes(value))
-
+item.status !== "Cancelled"
 
 );
 
@@ -282,7 +169,130 @@ item.service.toLowerCase().includes(value))
 
 
 
-displayBookings(filtered);
+
+
+let available =
+
+SLOT_LIMIT - dayBookings.length;
+
+
+
+
+
+
+
+
+let timeBox = document.createElement("div");
+
+
+
+timeBox.className="time-box";
+
+
+
+
+
+
+
+if(dayBookings.length > 0){
+
+
+
+timeBox.innerHTML =
+
+`
+
+<h3>
+
+${time}
+
+</h3>
+
+
+<p>
+
+${dayBookings.length}/3 slots booked
+
+</p>
+
+
+${
+
+dayBookings.map(item=>`
+
+<div class="booking-item">
+
+<strong>
+
+${item.name}
+
+</strong>
+
+<br>
+
+${item.service}
+
+<br>
+
+${item.vehicle}
+
+<br>
+
+Status:
+
+${item.status}
+
+</div>
+
+`).join("")
+
+}
+
+
+
+`;
+
+
+
+}
+
+else{
+
+
+
+timeBox.innerHTML =
+
+
+`
+
+<h3>
+
+${time}
+
+</h3>
+
+
+<p>
+
+Available:
+
+${available} slots
+
+</p>
+
+
+`;
+
+
+
+}
+
+
+
+
+
+
+dayBox.appendChild(timeBox);
 
 
 
@@ -293,30 +303,20 @@ displayBookings(filtered);
 
 
 
+calendar.appendChild(dayBox);
 
-
-// LOGOUT
-
-
-document
-.getElementById("logoutBtn")
-.addEventListener("click",function(e){
-
-
-e.preventDefault();
-
-
-localStorage.removeItem("adminLoggedIn");
-
-
-window.location.href="login.html";
 
 
 });
 
 
 
+}
 
 
 
-displayBookings();
+
+
+
+
+loadCalendar();
