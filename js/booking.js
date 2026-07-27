@@ -7,6 +7,67 @@
 
 const bookingForm = document.getElementById("bookingForm");
 
+// ======================================
+// AUTO FILL CUSTOMER DETAILS
+// ======================================
+
+
+let loggedUser = JSON.parse(
+
+localStorage.getItem("currentUser")
+
+);
+
+
+
+
+if(loggedUser){
+
+
+
+let nameInput = document.getElementById("name");
+
+let phoneInput = document.getElementById("phone");
+
+let notice = document.getElementById("accountNotice");
+
+
+
+if(nameInput && phoneInput){
+
+
+nameInput.value = loggedUser.name;
+
+phoneInput.value = loggedUser.phone;
+
+
+nameInput.readOnly = true;
+
+phoneInput.readOnly = true;
+
+
+}
+
+
+
+
+
+if(notice){
+
+
+notice.innerHTML =
+
+"✅ Booking will be saved to your Lets Essentials account.";
+
+
+notice.style.color="green";
+
+
+}
+
+
+}
+
 const bookingMessage = document.getElementById("bookingMessage");
 
 const whatsappBtn = document.getElementById("whatsappBtn");
