@@ -1,55 +1,62 @@
-/* ===========================
-   GOOGLE FONT
-=========================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
-/* ===========================
-   RESET
-=========================== */
+/* =========================
+   GLOBAL SETTINGS
+========================= */
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+    font-family:'Poppins', sans-serif;
     scroll-behavior:smooth;
 }
 
+
 body{
+
     background:#f8f9fb;
     color:#222;
-    line-height:1.6;
+
 }
 
-img{
-    width:100%;
-    display:block;
-}
 
 a{
+
     text-decoration:none;
+
 }
 
-ul{
-    list-style:none;
+
+img{
+
+    width:100%;
+    display:block;
+
 }
+
 
 section{
+
     padding:90px 8%;
+
 }
 
-/* ===========================
-   NAVIGATION
-=========================== */
+
+
+/* =========================
+   NAVBAR
+========================= */
+
 
 header{
+
     position:fixed;
-    width:100%;
     top:0;
-    left:0;
+    width:100%;
     z-index:1000;
+
 }
+
+
 
 .navbar{
 
@@ -59,22 +66,32 @@ header{
 
     padding:18px 8%;
 
-    background:rgba(255,255,255,.95);
+    background:rgba(255,255,255,0.95);
 
-    backdrop-filter:blur(12px);
+    backdrop-filter:blur(10px);
 
     box-shadow:0 5px 20px rgba(0,0,0,.08);
 
 }
 
+
+
 .logo img{
-    width:180px;
+
+    width:170px;
+
 }
 
+
+
 .nav-links{
+
     display:flex;
-    gap:30px;
+    gap:25px;
+
 }
+
+
 
 .nav-links a{
 
@@ -84,83 +101,114 @@ header{
 
 }
 
+
+
 .nav-links a:hover,
 .nav-links .active{
 
-    color:#0f4c81;
+    color:#0F4C81;
 
 }
+
+
 
 .menu-btn{
 
     display:none;
-    font-size:26px;
+    font-size:25px;
     cursor:pointer;
 
 }
 
-/* ===========================
-   HERO
-=========================== */
+
+
+
+/* =========================
+ HERO SECTION
+========================= */
+
 
 .hero{
 
     min-height:100vh;
 
-    display:flex;
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
     align-items:center;
 
-    background:
-    linear-gradient(rgba(15,76,129,.75),
-    rgba(15,76,129,.75)),
-    url("../images/hero.jpg");
+    gap:50px;
 
-    background-size:cover;
-    background-position:center;
+    padding-top:130px;
 
-    color:white;
+    background:white;
 
 }
 
-.hero-content{
 
-    max-width:700px;
+
+.welcome{
+
+    color:#0F4C81;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    font-size:14px;
 
 }
 
-.hero h1{
 
-    font-size:65px;
+
+.hero-content h1{
+
+    font-size:60px;
+
     line-height:1.15;
-    margin-bottom:25px;
+
+    margin:20px 0;
 
 }
 
-.hero h1 span{
 
-    color:#FFD54F;
+
+.hero-content h1 span{
+
+    color:#D4AF37;
 
 }
 
-.hero p{
 
-    font-size:19px;
+
+.hero-content p{
+
+    color:#666;
+
+    font-size:18px;
 
     margin-bottom:35px;
 
 }
 
+
+
 .hero-buttons{
 
     display:flex;
+
     gap:20px;
 
 }
 
+
+
 .btn-primary{
 
-    background:#FFD54F;
-    color:#111;
+    background:#0F4C81;
+
+    color:white;
 
     padding:15px 35px;
 
@@ -168,43 +216,250 @@ header{
 
     font-weight:600;
 
-    transition:.35s;
+    transition:.3s;
 
 }
+
+
 
 .btn-primary:hover{
 
-    background:white;
+    background:#D4AF37;
 
-    transform:translateY(-4px);
+    transform:translateY(-5px);
 
 }
 
+
+
 .btn-secondary{
 
-    border:2px solid white;
+    border:2px solid #0F4C81;
 
-    color:white;
+    color:#0F4C81;
 
     padding:15px 35px;
 
     border-radius:40px;
 
-    transition:.35s;
+    font-weight:600;
+
+    transition:.3s;
 
 }
+
+
 
 .btn-secondary:hover{
 
-    background:white;
+    background:#0F4C81;
 
-    color:#0f4c81;
+    color:white;
 
 }
 
-/* ===========================
-   SECTION TITLE
-=========================== */
+
+
+
+
+.hero-stats{
+
+    display:flex;
+
+    gap:40px;
+
+    margin-top:50px;
+
+}
+
+
+
+.hero-stats h2{
+
+    color:#0F4C81;
+
+    font-size:32px;
+
+}
+
+
+
+.hero-stats p{
+
+    font-size:14px;
+
+    margin:0;
+
+}
+
+
+
+
+
+/* =========================
+ HERO GALLERY
+========================= */
+
+
+.hero-gallery{
+
+    position:relative;
+
+    display:grid;
+
+    grid-template-columns:1fr .7fr;
+
+    gap:20px;
+
+}
+
+
+
+.gallery-main{
+
+    height:560px;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+}
+
+
+
+.gallery-main img{
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+
+
+.image-label{
+
+    position:absolute;
+
+    bottom:20px;
+
+    left:20px;
+
+    background:white;
+
+    padding:12px 20px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+}
+
+
+
+
+.gallery-small{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+
+
+.gallery-small div{
+
+    height:270px;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+
+
+.gallery-small img{
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+
+
+.gallery-small span{
+
+    position:absolute;
+
+    bottom:15px;
+
+    left:15px;
+
+    background:white;
+
+    padding:8px 15px;
+
+    border-radius:20px;
+
+    font-weight:600;
+
+}
+
+
+
+
+.floating-service{
+
+    position:absolute;
+
+    bottom:30px;
+
+    left:-40px;
+
+    background:white;
+
+    padding:18px 30px;
+
+    border-radius:40px;
+
+    box-shadow:0 15px 30px rgba(0,0,0,.15);
+
+    animation:float 3s infinite;
+
+}
+
+
+
+@keyframes float{
+
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+
+}
+
+
+
+
+/* =========================
+ TITLES
+========================= */
+
 
 .section-title{
 
@@ -214,51 +469,63 @@ header{
 
 }
 
+
+
 .section-title h2{
 
     font-size:40px;
 
-    color:#0f4c81;
+    color:#0F4C81;
 
 }
 
-.section-title p{
 
-    margin-top:10px;
+
+
+.section-title p{
 
     color:#666;
 
 }
 
-/* ===========================
-   SERVICES
-=========================== */
+
+
+
+
+/* =========================
+ SERVICES
+========================= */
+
 
 .service-container{
 
     display:grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    grid-template-columns:repeat(4,1fr);
 
-    gap:30px;
+    gap:25px;
 
 }
+
+
 
 .service-card{
 
     background:white;
 
-    padding:40px 30px;
+    padding:35px 25px;
 
-    border-radius:20px;
+    border-radius:25px;
 
     text-align:center;
 
     box-shadow:0 10px 25px rgba(0,0,0,.08);
 
-    transition:.35s;
+    transition:.3s;
 
 }
+
+
 
 .service-card:hover{
 
@@ -266,21 +533,27 @@ header{
 
 }
 
+
+
 .service-card i{
 
-    font-size:50px;
+    font-size:45px;
 
-    color:#0f4c81;
+    color:#0F4C81;
 
     margin-bottom:20px;
 
 }
+
+
 
 .service-card h3{
 
     margin-bottom:15px;
 
 }
+
+
 
 .service-card p{
 
@@ -290,115 +563,87 @@ header{
 
 }
 
+
+
 .service-card a{
 
-    color:#0f4c81;
+    color:#D4AF37;
 
     font-weight:600;
 
 }
 
-/* ===========================
-   WHY CHOOSE US
-=========================== */
+
+
+
+/* =========================
+ WHY US
+========================= */
+
 
 .why-us{
 
-    background:white;
+    background:#fff;
 
 }
+
+
 
 .why-container{
 
     display:grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    grid-template-columns:repeat(4,1fr);
 
     gap:25px;
 
 }
 
+
+
 .why-card{
+
+    background:#f5f7fa;
 
     padding:35px;
 
     text-align:center;
 
-    border-radius:18px;
-
-    background:#f8f9fb;
+    border-radius:20px;
 
 }
+
+
 
 .why-card i{
 
-    font-size:42px;
+    font-size:40px;
 
-    color:#FFD54F;
-
-    margin-bottom:20px;
-
-}
-
-.why-card h3{
-
-    margin-bottom:12px;
-
-}
-
-/* ===========================
-   REVIEWS
-=========================== */
-
-.review-box{
-
-    max-width:700px;
-
-    margin:auto;
-
-    background:white;
-
-    padding:45px;
-
-    border-radius:20px;
-
-    text-align:center;
-
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-
-}
-
-.review-box i{
-
-    font-size:45px;
-
-    color:#FFD54F;
+    color:#D4AF37;
 
     margin-bottom:20px;
 
 }
 
-.review-box p{
 
-    font-size:18px;
 
-    margin-bottom:20px;
 
-}
+/* =========================
+ CTA
+========================= */
 
-/* ===========================
-   CTA
-=========================== */
 
 .cta{
 
     text-align:center;
 
-    background:#0f4c81;
+    background:#0F4C81;
 
     color:white;
 
 }
+
+
 
 .cta h2{
 
@@ -408,15 +653,21 @@ header{
 
 }
 
+
+
 .cta p{
 
-    margin-bottom:35px;
+    margin-bottom:30px;
 
 }
 
-/* ===========================
-   FOOTER
-=========================== */
+
+
+
+/* =========================
+ FOOTER
+========================= */
+
 
 footer{
 
@@ -428,23 +679,27 @@ footer{
 
 }
 
+
+
 .footer-content{
 
     display:grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    grid-template-columns:repeat(3,1fr);
 
     gap:40px;
 
-    margin-bottom:40px;
-
 }
+
+
 
 .footer-content h3{
 
-    margin-bottom:18px;
+    margin-bottom:20px;
 
 }
+
+
 
 .footer-content a{
 
@@ -456,29 +711,71 @@ footer{
 
 }
 
-.footer-content a:hover{
 
-    color:#FFD54F;
-
-}
 
 .copyright{
 
-    border-top:1px solid rgba(255,255,255,.1);
+    margin-top:40px;
 
     text-align:center;
 
+    border-top:1px solid #333;
+
     padding-top:20px;
 
-    color:#bbb;
+    color:#aaa;
 
 }
 
-/* ===========================
-   RESPONSIVE
-=========================== */
 
-@media(max-width:992px){
+
+
+
+/* =========================
+ RESPONSIVE DESIGN
+========================= */
+
+
+@media(max-width:1100px){
+
+
+.service-container{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+
+.why-container{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+
+
+.hero{
+
+grid-template-columns:1fr;
+
+}
+
+
+
+.hero-gallery{
+
+margin-top:50px;
+
+}
+
+
+}
+
+
+
+
+@media(max-width:768px){
+
 
 .nav-links{
 
@@ -486,17 +783,30 @@ display:none;
 
 }
 
+
 .menu-btn{
 
 display:block;
 
 }
 
-.hero h1{
 
-font-size:48px;
+
+.hero-content{
+
+text-align:center;
 
 }
+
+
+
+.hero-content h1{
+
+font-size:40px;
+
+}
+
+
 
 .hero-buttons{
 
@@ -504,38 +814,64 @@ flex-direction:column;
 
 }
 
-}
 
-@media(max-width:768px){
 
-section{
+.hero-stats{
 
-padding:70px 6%;
+justify-content:center;
 
-}
-
-.hero{
-
-text-align:center;
+flex-wrap:wrap;
 
 }
 
-.hero h1{
 
-font-size:38px;
 
-}
+.hero-gallery{
 
-.section-title h2{
-
-font-size:32px;
+grid-template-columns:1fr;
 
 }
 
-.cta h2{
 
-font-size:34px;
+
+.gallery-main{
+
+height:400px;
 
 }
 
-  }
+
+
+.gallery-small div{
+
+height:200px;
+
+}
+
+
+
+.floating-service{
+
+left:10px;
+
+}
+
+
+
+.service-container,
+.why-container{
+
+grid-template-columns:1fr;
+
+}
+
+
+
+.footer-content{
+
+grid-template-columns:1fr;
+
+}
+
+
+   }
