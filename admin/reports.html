@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+Lets Essentials | Reports
+</title>
+
+
+<link rel="stylesheet" href="../css/admin.css">
+
+
+</head>
+
+
+<body>
+
+
+<div class="admin-container">
+
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+
+<div class="sidebar-header">
+
+<img src="../images/logo.png">
+
+<h2>
+Lets Essentials
+</h2>
+
+<p>
+Admin Panel
+</p>
+
+</div>
+
+
+
+<ul>
+
+
+<li>
+<a href="dashboard.html">
+
+🏠 <span>Dashboard</span>
+
+</a>
+</li>
+
+
+<li>
+<a href="bookings.html">
+
+🚗 <span>Bookings</span>
+
+</a>
+</li>
+
+
+<li>
+<a href="orders.html">
+
+📦 <span>Orders</span>
+
+</a>
+</li>
+
+
+<li>
+<a href="products.html">
+
+🛒 <span>Products</span>
+
+</a>
+</li>
+
+
+<li>
+<a href="customers.html">
+
+👥 <span>Customers</span>
+
+</a>
+</li>
+
+
+<li>
+<a href="reviews.html">
+
+⭐ <span>Reviews</span>
+
+</a>
+</li>
+
+
+<li>
+<a href="reports.html" class="active">
+
+📊 <span>Reports</span>
+
+</a>
+</li>
+
+
+<li>
+<a href="../index.html">
+
+🌍 <span>Website</span>
+
+</a>
+</li>
+
+
+<li>
+<a href="#" id="logoutBtn">
+
+🚪 <span>Logout</span>
+
+</a>
+</li>
+
+
+</ul>
+
+
+</aside>
+
+
+
+
+
+
+<!-- MAIN -->
+
+
+<div class="main-content">
+
+
+
+<header class="topbar">
+
+
+<h1>
+Business Reports
+</h1>
+
+
+
+<strong>
+Administrator
+</strong>
+
+
+</header>
+
+
+
+
+
+<div class="dashboard-content">
+
+
+
+
+
+<div class="stats-grid">
+
+
+
+<div class="stat-card">
+
+<h4>
+Total Revenue
+</h4>
+
+<h2 id="reportRevenue">
+P0
+</h2>
+
+</div>
+
+
+
+
+<div class="stat-card">
+
+<h4>
+Total Orders
+</h4>
+
+<h2 id="reportOrders">
+0
+</h2>
+
+</div>
+
+
+
+
+<div class="stat-card">
+
+<h4>
+Auto Care Bookings
+</h4>
+
+<h2 id="reportBookings">
+0
+</h2>
+
+</div>
+
+
+
+
+<div class="stat-card">
+
+<h4>
+Average Rating
+</h4>
+
+<h2 id="reportRating">
+0
+</h2>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="table-card">
+
+
+<h3>
+Popular Auto Care Services
+</h3>
+
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+Service
+</th>
+
+<th>
+Bookings
+</th>
+
+</tr>
+
+
+</thead>
+
+
+<tbody id="serviceReport">
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+
+
+
+<br>
+
+
+
+
+
+<div class="table-card">
+
+
+<h3>
+Best Selling Products
+</h3>
+
+
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+Product
+</th>
+
+<th>
+Quantity Sold
+</th>
+
+</tr>
+
+
+</thead>
+
+
+<tbody id="productReport">
+
+
+</tbody>
+
+
+</table>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+<script src="../js/reports.js"></script>
+
+
+</body>
+
+</html>
