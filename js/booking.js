@@ -299,6 +299,66 @@ JSON.stringify(bookings)
 
 
 
+// Update customer account history
+
+
+if(loggedUser){
+
+
+
+let users = JSON.parse(
+
+localStorage.getItem("users")
+
+) || [];
+
+
+
+let customerIndex = users.findIndex(user =>
+
+user.email === loggedUser.email
+
+);
+
+
+
+if(customerIndex !== -1){
+
+
+
+users[customerIndex].lastBooking = newBooking;
+
+
+
+localStorage.setItem(
+
+"users",
+
+JSON.stringify(users)
+
+);
+
+
+
+}
+
+
+
+}
+
+
+
+localStorage.setItem(
+
+"bookings",
+
+JSON.stringify(bookings)
+
+);
+
+
+
+
 
 
 
