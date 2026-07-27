@@ -1,26 +1,29 @@
-// ===============================
-// ORDER TRACKING SYSTEM
-// ===============================
-
+// ==================================
+// ORDER TRACKING
+// ==================================
 
 
 function trackOrder(){
 
 
-
-const enteredOrder =
+let enteredOrder =
 
 document.getElementById("orderNumber").value;
 
 
 
-const savedOrder =
+let order =
 
-localStorage.getItem("orderID");
+JSON.parse(
+
+localStorage.getItem("orderData")
+
+);
 
 
 
-const result =
+
+let result =
 
 document.getElementById("trackingResult");
 
@@ -28,11 +31,12 @@ document.getElementById("trackingResult");
 
 
 
-if(enteredOrder === savedOrder){
+if(order && enteredOrder === order.id){
 
 
 
 result.innerHTML =
+
 
 `
 
@@ -45,34 +49,49 @@ result.innerHTML =
 
 Order Number:
 
-<b>${savedOrder}</b>
+<b>${order.id}</b>
 
 </p>
 
 
-<p>
 
-Status:
+<h3>
+Order Progress
+</h3>
 
+
+
+<div class="timeline">
+
+
+<p class="active">
 🟡 Processing
-
 </p>
 
 
 <p>
-
-Estimated Delivery:
-
-5-7 Working Days
-
+🔵 Ordered From Supplier
 </p>
 
 
 <p>
-
-Thank you for choosing Lets Essentials.
-
+🟣 Arrived In Botswana
 </p>
+
+
+<p>
+🟢 Out For Delivery
+</p>
+
+
+<p>
+✅ Delivered
+</p>
+
+
+</div>
+
+
 
 `;
 
@@ -83,16 +102,13 @@ Thank you for choosing Lets Essentials.
 else{
 
 
-
-result.innerHTML =
+result.innerHTML=
 
 `
 
 <p style="color:red">
 
 ❌ Order not found.
-
-Please check your order number.
 
 </p>
 
