@@ -33,12 +33,14 @@ Lets Essentials Store
 
 <div class="logo">
 
-<img src="images/logo.png">
+<img src="images/logo.png" alt="Lets Essentials">
 
 </div>
 
 
+
 <ul class="nav-links">
+
 
 <li>
 <a href="index.html">
@@ -62,10 +64,18 @@ Shop
 
 
 <li>
+<a href="cart.html">
+🛒 Cart
+</a>
+</li>
+
+
+<li>
 <a href="track.html">
 Track Order
 </a>
 </li>
+
 
 
 </ul>
@@ -74,6 +84,7 @@ Track Order
 </nav>
 
 </header>
+
 
 
 
@@ -88,11 +99,12 @@ Lets Essentials Store
 
 
 <p>
-Quality gadgets and accessories delivered to your doorstep.
+Quality gadgets and accessories delivered with convenience.
 </p>
 
 
 </section>
+
 
 
 
@@ -104,11 +116,19 @@ Quality gadgets and accessories delivered to your doorstep.
 
 <div class="section-title">
 
+
 <h2>
 Featured Products
 </h2>
 
+
+<p>
+Explore our latest gadgets and accessories.
+</p>
+
+
 </div>
+
 
 
 
@@ -119,10 +139,11 @@ Featured Products
 
 
 
+
 <div class="product-card">
 
 
-<img src="images/gadget1.jpg">
+<img src="images/gadget1.jpg" alt="Wireless Earbuds">
 
 
 <h3>
@@ -140,8 +161,11 @@ P350
 </h4>
 
 
-<button onclick="addProduct('Wireless Earbuds',350)">
-Order Now
+
+<button onclick="addToCart('Wireless Earbuds',350)">
+
+Add To Cart
+
 </button>
 
 
@@ -152,10 +176,11 @@ Order Now
 
 
 
+
 <div class="product-card">
 
 
-<img src="images/gadget2.jpg">
+<img src="images/gadget2.jpg" alt="Smart Watch">
 
 
 <h3>
@@ -164,7 +189,7 @@ Smart Watch
 
 
 <p>
-Track fitness and notifications.
+Fitness tracking and smart notifications.
 </p>
 
 
@@ -173,12 +198,16 @@ P600
 </h4>
 
 
-<button onclick="addProduct('Smart Watch',600)">
-Order Now
+
+<button onclick="addToCart('Smart Watch',600)">
+
+Add To Cart
+
 </button>
 
 
 </div>
+
 
 
 
@@ -188,7 +217,7 @@ Order Now
 <div class="product-card">
 
 
-<img src="images/gadget3.jpg">
+<img src="images/gadget3.jpg" alt="Phone Accessories">
 
 
 <h3>
@@ -197,7 +226,7 @@ Phone Accessories
 
 
 <p>
-Chargers, cables and protection.
+Chargers, cables and phone protection.
 </p>
 
 
@@ -206,12 +235,17 @@ P150
 </h4>
 
 
-<button onclick="addProduct('Phone Accessories',150)">
-Order Now
+
+<button onclick="addToCart('Phone Accessories',150)">
+
+Add To Cart
+
 </button>
 
 
 </div>
+
+
 
 
 
@@ -220,46 +254,6 @@ Order Now
 
 
 </section>
-
-
-
-
-
-
-
-
-<section class="order-box">
-
-
-<h2>
-Your Order
-</h2>
-
-
-<div id="cart">
-
-<p>
-No products selected.
-</p>
-
-</div>
-
-
-
-<button onclick="createOrder()">
-
-Confirm Order
-
-</button>
-
-
-
-<p id="orderResult"></p>
-
-
-
-</section>
-
 
 
 
@@ -280,9 +274,11 @@ Confirm Order
 
 
 
+
 <script src="js/shop.js"></script>
 
 
 </body>
+
 
 </html>
