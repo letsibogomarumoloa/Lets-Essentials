@@ -410,3 +410,112 @@ bookingForm.reset();
 
 
 }
+
+// =====================================
+// SMART TIME SLOT AVAILABILITY
+// =====================================
+
+
+const dateInput = document.getElementById("date");
+
+const timeSelect = document.getElementById("time");
+
+
+
+const SLOT_LIMIT = 3;
+
+
+
+if(dateInput && timeSelect){
+
+
+
+dateInput.addEventListener("change", function(){
+
+
+
+let selectedDate = this.value;
+
+
+
+let options = timeSelect.options;
+
+
+
+for(let i = 1; i < options.length; i++){
+
+
+
+let selectedTime = options[i].value;
+
+
+
+
+let bookedCount = bookings.filter(booking => {
+
+
+
+return (
+
+booking.date === selectedDate &&
+
+booking.time === selectedTime &&
+
+booking.status !== "Cancelled"
+
+);
+
+
+
+}).length;
+
+
+
+
+
+
+if(bookedCount >= SLOT_LIMIT){
+
+
+
+options[i].disabled = true;
+
+
+options[i].text =
+
+selectedTime +
+
+" - Fully Booked ❌";
+
+
+
+}
+
+else{
+
+
+
+options[i].disabled = false;
+
+
+options[i].text =
+
+selectedTime +
+
+" - Available ✅";
+
+
+
+}
+
+
+
+}
+
+
+
+});
+
+
+
+}
