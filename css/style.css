@@ -551,3 +551,26 @@ margin-bottom:15px;
 line-height:2;
 
 }
+
+button{
+
+padding:12px 20px;
+
+border:none;
+
+border-radius:25px;
+
+background:#111;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+
+button:hover{
+
+opacity:.8;
+
+}
