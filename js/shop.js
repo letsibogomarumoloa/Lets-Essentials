@@ -1,7 +1,7 @@
 // ======================================
-// LETS ESSENTIALS CUSTOMER SHOP
-// shop.js
+// LETS ESSENTIALS SHOP SYSTEM
 // ======================================
+
 
 
 let products = JSON.parse(
@@ -21,8 +21,10 @@ localStorage.getItem("cart")
 
 
 
-const productsContainer =
-document.getElementById("productsContainer");
+
+const productContainer =
+
+document.getElementById("shopProducts");
 
 
 
@@ -31,32 +33,25 @@ document.getElementById("productsContainer");
 function displayProducts(){
 
 
-if(!productsContainer) return;
+if(!productContainer) return;
 
 
 
-productsContainer.innerHTML="";
+productContainer.innerHTML="";
 
 
 
-if(products.length === 0){
+
+if(products.length===0){
 
 
-productsContainer.innerHTML =
+productContainer.innerHTML=
 
 `
 
-<div>
-
-<h3>
-No products available yet.
-</h3>
-
 <p>
-Please check back soon.
+Products coming soon.
 </p>
-
-</div>
 
 `;
 
@@ -68,49 +63,42 @@ return;
 
 
 
-products.forEach((product,index)=>{
+
+products.forEach(product=>{
 
 
-productsContainer.innerHTML +=
+
+productContainer.innerHTML +=
+
 
 `
 
 <div class="product-card">
 
 
-<img 
-src="${product.image}"
-alt="${product.name}">
+<img src="${product.image}">
 
 
 
 <h3>
-
 ${product.name}
-
 </h3>
 
 
 
-<p class="category">
-
+<p>
 ${product.category}
-
 </p>
 
 
-
 <h4>
-
 P${product.price}
-
 </h4>
 
 
 
-<button 
 
-onclick="addToCart(${index})">
+<button onclick="addToCart('${product.id}')">
 
 Add To Cart
 
@@ -134,58 +122,23 @@ Add To Cart
 
 
 
+function addToCart(id){
 
 
 
-function addToCart(index){
+let product = products.find(item =>
 
-
-
-let product = products[index];
-
-
-
-
-
-let existing = cart.find(item =>
-
-item.id === product.id
+item.id === id
 
 );
 
 
 
 
-
-if(existing){
-
-
-existing.quantity += 1;
+if(product){
 
 
-}else{
-
-
-cart.push({
-
-id:product.id,
-
-name:product.name,
-
-price:product.price,
-
-image:product.image,
-
-quantity:1
-
-
-});
-
-
-}
-
-
-
+cart.push(product);
 
 
 
@@ -199,9 +152,6 @@ JSON.stringify(cart)
 
 
 
-
-
-
 alert(
 
 product.name +
@@ -209,6 +159,97 @@ product.name +
 " added to cart"
 
 );
+
+
+
+displayCart();
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+function displayCart(){
+
+
+
+let cartBox =
+
+document.getElementById("cartItems");
+
+
+
+let totalBox =
+
+document.getElementById("cartTotal");
+
+
+
+if(!cartBox) return;
+
+
+
+cartBox.innerHTML="";
+
+
+
+let total=0;
+
+
+
+
+
+cart.forEach(item=>{
+
+
+
+total += Number(item.price);
+
+
+
+cartBox.innerHTML +=
+
+
+`
+
+<div class="profile-card">
+
+<h3>
+
+${item.name}
+
+</h3>
+
+
+<p>
+
+P${item.price}
+
+</p>
+
+
+</div>
+
+`;
+
+
+
+});
+
+
+
+
+
+totalBox.innerHTML =
+
+"Total: P" + total;
 
 
 
@@ -221,3 +262,5 @@ product.name +
 
 
 displayProducts();
+
+displayCart();
