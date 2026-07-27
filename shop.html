@@ -1,1 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+Lets Essentials Store
+</title>
+
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="css/shop.css">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<nav class="navbar">
+
+
+<div class="logo">
+
+<img src="images/logo.png">
+
+</div>
+
+
+<ul class="nav-links">
+
+<li>
+<a href="index.html">
+Home
+</a>
+</li>
+
+
+<li>
+<a href="autocare.html">
+Auto Care
+</a>
+</li>
+
+
+<li>
+<a href="shop.html" class="active">
+Shop
+</a>
+</li>
+
+
+<li>
+<a href="track.html">
+Track Order
+</a>
+</li>
+
+
+</ul>
+
+
+</nav>
+
+</header>
+
+
+
+
+
+<section class="shop-hero">
+
+
+<h1>
+Lets Essentials Store
+</h1>
+
+
+<p>
+Quality gadgets and accessories delivered to your doorstep.
+</p>
+
+
+</section>
+
+
+
+
+
+
+<section class="products">
+
+
+<div class="section-title">
+
+<h2>
+Featured Products
+</h2>
+
+</div>
+
+
+
+
+<div class="product-grid">
+
+
+
+
+
+<div class="product-card">
+
+
+<img src="images/gadget1.jpg">
+
+
+<h3>
+Wireless Earbuds
+</h3>
+
+
+<p>
+Premium sound experience.
+</p>
+
+
+<h4>
+P350
+</h4>
+
+
+<button onclick="addProduct('Wireless Earbuds',350)">
+Order Now
+</button>
+
+
+</div>
+
+
+
+
+
+
+<div class="product-card">
+
+
+<img src="images/gadget2.jpg">
+
+
+<h3>
+Smart Watch
+</h3>
+
+
+<p>
+Track fitness and notifications.
+</p>
+
+
+<h4>
+P600
+</h4>
+
+
+<button onclick="addProduct('Smart Watch',600)">
+Order Now
+</button>
+
+
+</div>
+
+
+
+
+
+
+<div class="product-card">
+
+
+<img src="images/gadget3.jpg">
+
+
+<h3>
+Phone Accessories
+</h3>
+
+
+<p>
+Chargers, cables and protection.
+</p>
+
+
+<h4>
+P150
+</h4>
+
+
+<button onclick="addProduct('Phone Accessories',150)">
+Order Now
+</button>
+
+
+</div>
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<section class="order-box">
+
+
+<h2>
+Your Order
+</h2>
+
+
+<div id="cart">
+
+<p>
+No products selected.
+</p>
+
+</div>
+
+
+
+<button onclick="createOrder()">
+
+Confirm Order
+
+</button>
+
+
+
+<p id="orderResult"></p>
+
+
+
+</section>
+
+
+
+
+
+
+
+<footer>
+
+
+<div class="copyright">
+
+© 2026 Lets Essentials. All Rights Reserved.
+
+</div>
+
+
+</footer>
+
+
+
+<script src="js/shop.js"></script>
+
+
+</body>
+
+</html>
