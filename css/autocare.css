@@ -485,10 +485,47 @@ PRICE ESTIMATOR
 
 #estimatedPrice{
 
+
     font-size:24px;
 
     font-weight:700;
 
     color:#D4AF37;
+
+}
+
+/* ===========================
+WHATSAPP BUTTON
+=========================== */
+
+
+.whatsapp-btn{
+
+    display:none;
+
+    margin-top:25px;
+
+    background:#25D366;
+
+    color:white;
+
+    padding:15px 30px;
+
+    border-radius:40px;
+
+    font-weight:600;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+
+.whatsapp-btn:hover{
+
+    background:#1da851;
+
+    transform:translateY(-3px);
 
 }
