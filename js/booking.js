@@ -89,7 +89,8 @@ document.getElementById("vehicleType");
 const estimatedPrice =
 document.getElementById("estimatedPrice");
 
-
+const whatsappBtn =
+document.getElementById("whatsappBtn");
 
 // =======================================
 // HOUSE CALL ADDRESS DISPLAY
@@ -549,6 +550,96 @@ bookingMessage.innerHTML =
 ✅ Booking Confirmed!
 </h3>
 
+// =======================================
+// WHATSAPP CONFIRMATION
+// =======================================
+
+
+const businessNumber =
+"26777044869";
+
+
+
+let whatsappMessage =
+
+`
+Hello Lets Essentials 👋
+
+I would like to confirm my Auto Care booking.
+
+Customer:
+${name}
+
+Phone:
+${phone}
+
+Service:
+${service}
+
+Vehicle:
+${vehicle}
+
+Registration:
+${registration}
+
+Date:
+${date}
+
+Time:
+${time}
+
+${
+
+houseCall
+
+?
+
+`
+House Call:
+Yes
+
+Location:
+${address}
+`
+
+:
+
+`
+House Call:
+No
+`
+
+}
+
+
+Estimated Price:
+${estimatedPrice.innerText}
+
+
+Thank you.
+`;
+
+
+
+
+
+const whatsappURL =
+
+"https://wa.me/" +
+
+businessNumber +
+
+"?text=" +
+
+encodeURIComponent(whatsappMessage);
+
+
+
+
+whatsappBtn.href = whatsappURL;
+
+
+whatsappBtn.style.display="inline-block";
 
 <br>
 
