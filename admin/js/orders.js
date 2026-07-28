@@ -1,14 +1,15 @@
 /* =========================================
    LETS ESSENTIALS
-   ADMIN ORDER MANAGEMENT
+   ADMIN ORDERS MANAGEMENT V3.0
 ========================================= */
 
 
+const ordersTable =
+document.getElementById("ordersTable");
 
-const ordersContainer =
-document.getElementById("ordersContainer");
 
-
+const searchOrders =
+document.getElementById("searchOrders");
 
 
 
@@ -23,50 +24,46 @@ localStorage.getItem("letsOrders")
 
 
 
-function displayOrders(){
+
+// ================================
+// DISPLAY ORDERS
+// ================================
+
+
+function displayOrders(list = orders){
 
 
 
-if(!ordersContainer)
-
-return;
+if(!ordersTable) return;
 
 
 
-ordersContainer.innerHTML="";
+ordersTable.innerHTML = "";
 
 
 
 
 
-
-if(orders.length === 0){
-
+if(list.length === 0){
 
 
-ordersContainer.innerHTML = `
+ordersTable.innerHTML = `
 
 
-<div class="tracking-box">
+<tr>
 
+<td colspan="6">
 
-<h3>
-No Orders Yet
-</h3>
+No orders available
 
+</td>
 
-<p>
-Customer orders will appear here.
-</p>
-
-
-</div>
+</tr>
 
 
 `;
 
 
-
 return;
 
 
@@ -78,142 +75,106 @@ return;
 
 
 
-
-orders.forEach(order=>{
-
-
-ordersContainer.innerHTML += `
+list.forEach(order => {
 
 
 
-<div class="checkout-box">
+ordersTable.innerHTML += `
 
 
 
-<h3>
-
-Order ${order.id}
-
-</h3>
+<tr>
 
 
+<td>
 
-<p>
+#${order.id}
 
-<strong>
-Customer:
-</strong>
-
-${order.customer}
-
-</p>
+</td>
 
 
 
 
-<p>
+<td>
 
 <strong>
-Phone:
+${order.customer || "Guest Customer"}
 </strong>
 
-${order.phone}
 
-</p>
-
+<br>
 
 
-
-<p>
-
-<strong>
-Email:
-</strong>
-
-${order.email}
-
-</p>
+<small>
+${order.phone || ""}
+</small>
 
 
-
-
-<p>
-
-<strong>
-Address:
-</strong>
-
-${order.address}
-
-</p>
+</td>
 
 
 
 
 
-<h4>
-Products
-</h4>
+<td>
 
-
-
-<ul>
 
 ${
 
-order.items.map(item=>`
+order.items ?
 
-<li>
+order.items.map(item => 
 
-${item.name}
+item.name
 
-x${item.quantity}
+).join(", ")
 
--
-P${item.price * item.quantity}
+:
 
-</li>
-
-`).join("")
+"No items"
 
 }
 
-</ul>
+
+
+</td>
 
 
 
 
 
 
-<p>
+<td>
 
-<strong>
-Payment:
-</strong>
+P${order.total || 0}
 
-${order.payment}
-
-</p>
+</td>
 
 
 
 
 
+<td>
 
 
-<label>
+<select
 
-Status:
-
-</label>
+onchange="updateOrderStatus(${order.id}, this.value)">
 
 
+<option value="pending"
 
-<select onchange="updateOrderStatus('${order.id}', this.value)">
+${order.status === "pending" ? "selected" : ""}>
+
+Pending
+
+</option>
 
 
 
-<option ${order.status==="Processing"?"selected":""}>
+<option value="processing"
+
+${order.status === "processing" ? "selected" : ""}>
 
 Processing
 
@@ -221,15 +182,10 @@ Processing
 
 
 
-<option ${order.status==="Ready"?"selected":""}>
 
-Ready
+<option value="completed"
 
-</option>
-
-
-
-<option ${order.status==="Completed"?"selected":""}>
+${order.status === "completed" ? "selected" : ""}>
 
 Completed
 
@@ -237,7 +193,21 @@ Completed
 
 
 
-<option ${order.status==="Cancelled"?"selected":""}>
+
+<option value="delivered"
+
+${order.status === "delivered" ? "selected" : ""}>
+
+Delivered
+
+</option>
+
+
+
+
+<option value="cancelled"
+
+${order.status === "cancelled" ? "selected" : ""}>
 
 Cancelled
 
@@ -249,9 +219,36 @@ Cancelled
 
 
 
+</td>
 
 
-</div>
+
+
+
+
+<td>
+
+
+<button
+
+class="btn btn-secondary"
+
+onclick="deleteOrder(${order.id})">
+
+
+<i class="fas fa-trash"></i>
+
+
+</button>
+
+
+
+</td>
+
+
+
+</tr>
+
 
 
 `;
@@ -272,29 +269,91 @@ Cancelled
 
 
 
+// ================================
+// UPDATE ORDER STATUS
+// ================================
+
+
 function updateOrderStatus(id,status){
 
 
 
-orders = orders.map(order=>{
+const order =
+orders.find(
+
+item => item.id === id
+
+);
 
 
-if(order.id === id){
+
+
+
+if(order){
+
 
 
 order.status = status;
 
 
+
+localStorage.setItem(
+
+"letsOrders",
+
+JSON.stringify(orders)
+
+);
+
+
+
+displayOrders();
+
+
+
 }
 
 
-return order;
+
+}
 
 
 
-});
 
 
+
+
+
+
+// ================================
+// DELETE ORDER
+// ================================
+
+
+function deleteOrder(id){
+
+
+
+const confirmDelete = confirm(
+
+"Delete this order?"
+
+);
+
+
+
+
+
+if(confirmDelete){
+
+
+
+orders =
+orders.filter(
+
+order => order.id !== id
+
+);
 
 
 
@@ -310,11 +369,11 @@ JSON.stringify(orders)
 
 
 
-alert(
+displayOrders();
 
-"Order status updated"
 
-);
+
+}
 
 
 
@@ -325,5 +384,74 @@ alert(
 
 
 
+
+
+
+// ================================
+// SEARCH ORDERS
+// ================================
+
+
+if(searchOrders){
+
+
+
+searchOrders.addEventListener(
+"input",
+function(){
+
+
+
+const value =
+this.value.toLowerCase();
+
+
+
+
+
+const filteredOrders =
+orders.filter(order =>
+
+
+
+String(order.id)
+.includes(value)
+
+
+
+||
+
+
+
+(order.customer || "")
+.toLowerCase()
+.includes(value)
+
+
+
+);
+
+
+
+
+
+displayOrders(filteredOrders);
+
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+
+// LOAD ORDERS
 
 displayOrders();
