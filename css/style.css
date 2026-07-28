@@ -3075,3 +3075,116 @@ p{
 
 
 }
+
+/* =========================================
+   ORDER TRACKING
+========================================= */
+
+
+.tracking-section{
+
+    min-height:500px;
+
+}
+
+
+
+.tracking-box{
+
+    max-width:700px;
+
+    margin:auto;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+}
+
+
+
+.tracking-box form{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:25px;
+
+}
+
+
+
+.tracking-box input{
+
+    flex:1;
+
+    padding:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+}
+
+
+
+#trackingResult{
+
+    margin-top:30px;
+
+}
+
+
+
+.order-result{
+
+    background:var(--grey);
+
+    padding:25px;
+
+    border-radius:var(--radius);
+
+}
+
+
+
+.order-result h3{
+
+    color:var(--primary);
+
+}
+
+
+
+.status{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    background:var(--primary);
+
+    color:white;
+
+    border-radius:50px;
+
+    margin-top:15px;
+
+}
+
+
+
+@media(max-width:768px){
+
+    .tracking-box form{
+
+        flex-direction:column;
+
+    }
+
+}
