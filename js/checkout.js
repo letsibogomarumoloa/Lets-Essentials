@@ -1,79 +1,18 @@
 /* =========================================
-   AUTO FILL CUSTOMER DETAILS
-========================================= */
-
-
-const loggedCustomer = JSON.parse(
-
-localStorage.getItem("letsCustomer")
-
-);
-
-
-
-if(loggedCustomer){
-
-
-const nameInput =
-document.getElementById(
-"checkoutName"
-);
-
-
-
-const emailInput =
-document.getElementById(
-"checkoutEmail"
-);
-
-
-
-const phoneInput =
-document.getElementById(
-"checkoutPhone"
-);
-
-
-
-
-
-if(nameInput){
-
-nameInput.value =
-loggedCustomer.name;
-
-}
-
-
-
-if(emailInput){
-
-emailInput.value =
-loggedCustomer.email;
-
-}
-
-
-
-if(phoneInput){
-
-phoneInput.value =
-loggedCustomer.phone;
-
-}
-
-
-
-}
-
-/* =========================================
    LETS ESSENTIALS
-   CHECKOUT + WHATSAPP SYSTEM
+   CHECKOUT SYSTEM V1.0
 ========================================= */
 
 
-const checkoutForm =
-document.getElementById("checkoutForm");
+
+let cart = JSON.parse(
+
+localStorage.getItem("letsCart")
+
+) || [];
+
+
+
 
 
 const checkoutItems =
@@ -85,11 +24,8 @@ document.getElementById("checkoutTotal");
 
 
 
-let checkoutCart = JSON.parse(
-
-localStorage.getItem("letsCart")
-
-) || [];
+const checkoutForm =
+document.getElementById("checkoutForm");
 
 
 
@@ -97,83 +33,120 @@ localStorage.getItem("letsCart")
 
 
 
-function showCheckout(){
+
+
+// ================================
+// DISPLAY ORDER SUMMARY
+// ================================
+
+
+function displayCheckout(){
+
+
+
+if(!checkoutItems) return;
+
+
+
+
+checkoutItems.innerHTML = "";
+
 
 
 let total = 0;
 
 
-if(!checkoutItems)
-return;
 
 
 
-checkoutItems.innerHTML="";
+cart.forEach(item => {
 
 
 
-checkoutCart.forEach(item=>{
+total += item.price * item.quantity;
 
-
-let itemTotal =
-item.price * item.quantity;
-
-
-total += itemTotal;
 
 
 
 checkoutItems.innerHTML += `
 
 
-<p>
+
+<div class="checkout-item">
+
+
+<h3>
 
 ${item.name}
 
-x${item.quantity}
+</h3>
 
--
 
-P${itemTotal}
+<p>
+
+Quantity:
+${item.quantity}
 
 </p>
 
 
+<p>
+
+P${item.price * item.quantity}
+
+</p>
+
+
+</div>
+
+
 `;
+
 
 
 });
 
 
 
+
+
+
+
 if(checkoutTotal){
 
+
 checkoutTotal.textContent =
+
 "P" + total;
 
-}
-
-
-return total;
-
 
 }
 
 
 
-const orderTotal = showCheckout();
+}
 
 
 
 
 
 
+
+
+
+// ================================
+// PLACE ORDER
+// ================================
 
 
 if(checkoutForm){
 
 
-checkoutForm.addEventListener("submit",(e)=>{
+
+checkoutForm.addEventListener(
+"submit",
+function(e){
+
 
 
 e.preventDefault();
@@ -182,100 +155,26 @@ e.preventDefault();
 
 
 
-const customer =
 
-document.getElementById(
-"checkoutName"
-).value;
+if(cart.length === 0){
 
 
 
-const phone =
+alert(
 
-document.getElementById(
-"checkoutPhone"
-).value;
-
-
-
-const email =
-
-document.getElementById(
-"checkoutEmail"
-).value;
-
-
-
-const address =
-
-document.getElementById(
-"checkoutAddress"
-).value;
-
-
-
-const payment =
-
-document.getElementById(
-"paymentMethod"
-).value;
-
-
-
-
-
-
-
-
-const orderNumber =
-
-"ORD-" +
-
-Math.floor(
-
-100000 +
-
-Math.random()*900000
+"Your cart is empty."
 
 );
 
 
 
+return;
 
 
 
+}
 
 
-const order = {
-
-
-id:orderNumber,
-
-
-customer:customer,
-
-
-phone:phone,
-
-
-email:email,
-
-
-address:address,
-
-
-payment:payment,
-
-
-items:checkoutCart,
-
-
-status:"Processing"
-
-date:new Date().toLocaleDateString()
-
-
-};
 
 
 
@@ -292,38 +191,105 @@ localStorage.getItem("letsOrders")
 
 
 
+
+
+
+
+const order = {
+
+
+id: Date.now(),
+
+
+
+customer:
+
+document.getElementById(
+"checkoutName"
+).value,
+
+
+
+phone:
+
+document.getElementById(
+"checkoutPhone"
+).value,
+
+
+
+email:
+
+document.getElementById(
+"checkoutEmail"
+).value,
+
+
+
+address:
+
+document.getElementById(
+"checkoutAddress"
+).value,
+
+
+
+payment:
+
+document.getElementById(
+"paymentMethod"
+).value,
+
+
+
+items: cart,
+
+
+
+total:
+
+cart.reduce(
+
+(sum,item)=>
+
+sum +
+
+(item.price * item.quantity),
+
+0
+
+),
+
+
+
+status:"pending",
+
+
+
+date:
+
+new Date()
+.toLocaleDateString()
+
+
+
+};
+
+
+
+
+
+
+
+
+
 orders.push(order);
 
-// SAVE ORDER TO CUSTOMER ACCOUNT
-
-
-let currentCustomer = JSON.parse(
-
-localStorage.getItem("letsCustomer")
-
-);
 
 
 
 
-if(currentCustomer){
 
-
-currentCustomer.orders.push(order.id);
-
-
-
-localStorage.setItem(
-
-"letsCustomer",
-
-JSON.stringify(currentCustomer)
-
-);
-
-
-
-}
 
 localStorage.setItem(
 
@@ -339,71 +305,28 @@ JSON.stringify(orders)
 
 
 
-
-// CREATE WHATSAPP MESSAGE
-
-
-let whatsappMessage =
-
-`Hello Lets Essentials 👋
-
-I would like to place an order.
-
-Order Number:
-${orderNumber}
-
-
-Customer:
-${customer}
-
-
-Products:
-`;
+document.getElementById(
+"orderMessage"
+).innerHTML = `
 
 
 
+<h3 style="color:green">
+
+Order placed successfully!
+
+</h3>
 
 
 
-checkoutCart.forEach(item=>{
+<p>
+
+Order ID:
+#${order.id}
+
+</p>
 
 
-whatsappMessage +=
-
-`
-
-${item.name}
-
-Quantity: ${item.quantity}
-
-Price: P${item.price * item.quantity}
-
-`;
-
-
-});
-
-
-
-
-
-
-whatsappMessage +=
-
-`
-
-Total:
-P${orderTotal}
-
-
-Delivery Address:
-${address}
-
-
-Payment:
-${payment}
-
-Thank you.
 `;
 
 
@@ -412,40 +335,7 @@ Thank you.
 
 
 
-
-// BUSINESS WHATSAPP NUMBER
-
-const businessNumber =
-
-"267XXXXXXXX";
-
-
-
-
-
-
-
-
-window.open(
-
-"https://wa.me/" +
-
-businessNumber +
-
-"?text=" +
-
-encodeURIComponent(
-whatsappMessage
-),
-
-"_blank"
-
-);
-
-
-
-
-
+// CLEAR CART
 
 localStorage.removeItem(
 "letsCart"
@@ -453,37 +343,8 @@ localStorage.removeItem(
 
 
 
+cart = [];
 
-
-document.getElementById(
-"orderMessage"
-).innerHTML =
-
-
-`
-
-<div class="order-result">
-
-
-<h3>
-Order Created Successfully!
-</h3>
-
-
-<p>
-
-Your order number is:
-
-<strong>
-${orderNumber}
-</strong>
-
-</p>
-
-
-</div>
-
-`;
 
 
 
@@ -493,8 +354,22 @@ checkoutForm.reset();
 
 
 
+
+
 });
 
 
 
 }
+
+
+
+
+
+
+
+
+
+// LOAD
+
+displayCheckout();
