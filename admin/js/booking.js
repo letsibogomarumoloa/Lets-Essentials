@@ -1,18 +1,15 @@
 /* =========================================
    LETS ESSENTIALS
-   AUTO CARE BOOKING MANAGEMENT
+   ADMIN BOOKINGS MANAGEMENT V3.0
 ========================================= */
 
 
-
-const bookingsContainer =
-
-document.getElementById(
-"bookingsContainer"
-);
+const bookingsTable =
+document.getElementById("bookingsTable");
 
 
-
+const searchBookings =
+document.getElementById("searchBookings");
 
 
 
@@ -28,52 +25,44 @@ localStorage.getItem("letsBookings")
 
 
 
-function displayBookings(){
+// ================================
+// DISPLAY BOOKINGS
+// ================================
+
+
+function displayBookings(list = bookings){
 
 
 
-if(!bookingsContainer)
-
-return;
-
-
-
-
-
-bookingsContainer.innerHTML="";
-
+if(!bookingsTable) return;
 
 
 
 
+bookingsTable.innerHTML = "";
 
 
-if(bookings.length === 0){
 
 
 
-bookingsContainer.innerHTML = `
+if(list.length === 0){
 
 
-<div class="tracking-box">
+bookingsTable.innerHTML = `
 
 
-<h3>
-No Bookings Yet
-</h3>
+<tr>
 
+<td colspan="6">
 
-<p>
-Customer appointments will appear here.
-</p>
+No bookings available
 
+</td>
 
-</div>
+</tr>
 
 
 `;
-
-
 
 return;
 
@@ -86,140 +75,108 @@ return;
 
 
 
-bookings.forEach(booking=>{
+list.forEach(booking => {
 
 
 
-bookingsContainer.innerHTML += `
+bookingsTable.innerHTML += `
 
 
 
-<div class="checkout-box">
-
-
-<h3>
-
-Booking ${booking.id}
-
-</h3>
+<tr>
 
 
 
 
-<p>
+
+<td>
+
 
 <strong>
-Customer:
+
+${booking.name || "Customer"}
+
 </strong>
 
-${booking.name}
 
-</p>
+<br>
 
 
+<small>
 
+${booking.phone || ""}
 
+</small>
 
-<p>
 
-<strong>
-Phone:
-</strong>
+</td>
 
-${booking.phone}
 
-</p>
 
 
 
 
 
-<p>
+<td>
 
-<strong>
-Vehicle:
-</strong>
 
-${booking.vehicle}
+${booking.vehicle || "Not provided"}
 
-</p>
 
+</td>
 
 
 
 
-<p>
 
-<strong>
-Service:
-</strong>
 
-${booking.service}
 
-</p>
+<td>
 
 
+${booking.service || "Auto Care Service"}
 
 
+</td>
 
-<p>
 
-<strong>
-Date:
-</strong>
 
-${booking.date}
 
-</p>
 
 
 
+<td>
 
 
-<p>
+${booking.date || "N/A"}
 
-<strong>
-Time:
-</strong>
 
-${booking.time}
+<br>
 
-</p>
+${booking.time || ""}
 
 
+</td>
 
 
 
-<p>
 
-<strong>
-Location:
-</strong>
 
-${booking.location}
 
-</p>
 
+<td>
 
 
 
+<select
 
+onchange="updateBookingStatus(${booking.id},this.value)">
 
 
-<label>
 
-Status:
+<option value="pending"
 
-</label>
-
-
-
-
-<select onchange="updateBookingStatus('${booking.id}', this.value)">
-
-
-
-<option ${booking.status==="Pending"?"selected":""}>
+${booking.status === "pending" ? "selected" : ""}>
 
 Pending
 
@@ -228,16 +185,22 @@ Pending
 
 
 
-<option ${booking.status==="Approved"?"selected":""}>
 
-Approved
+<option value="confirmed"
+
+${booking.status === "confirmed" ? "selected" : ""}>
+
+Confirmed
 
 </option>
 
 
 
 
-<option ${booking.status==="Completed"?"selected":""}>
+
+<option value="completed"
+
+${booking.status === "completed" ? "selected" : ""}>
 
 Completed
 
@@ -246,7 +209,10 @@ Completed
 
 
 
-<option ${booking.status==="Cancelled"?"selected":""}>
+
+<option value="cancelled"
+
+${booking.status === "cancelled" ? "selected" : ""}>
 
 Cancelled
 
@@ -254,11 +220,44 @@ Cancelled
 
 
 
+
 </select>
 
 
 
-</div>
+</td>
+
+
+
+
+
+
+
+
+<td>
+
+
+<button
+
+class="btn btn-secondary"
+
+onclick="deleteBooking(${booking.id})">
+
+
+<i class="fas fa-trash"></i>
+
+
+</button>
+
+
+
+</td>
+
+
+
+
+
+</tr>
 
 
 
@@ -280,27 +279,93 @@ Cancelled
 
 
 
+// ================================
+// UPDATE BOOKING STATUS
+// ================================
+
+
 function updateBookingStatus(id,status){
 
 
 
-bookings = bookings.map(booking=>{
+const booking =
+
+bookings.find(
+
+item => item.id === id
+
+);
 
 
-if(booking.id === id){
+
+
+
+if(booking){
+
 
 
 booking.status = status;
 
 
+
+localStorage.setItem(
+
+"letsBookings",
+
+JSON.stringify(bookings)
+
+);
+
+
+
+displayBookings();
+
+
+
 }
 
 
-return booking;
+
+}
 
 
-});
 
+
+
+
+
+
+
+// ================================
+// DELETE BOOKING
+// ================================
+
+
+function deleteBooking(id){
+
+
+
+const confirmDelete = confirm(
+
+"Delete this booking?"
+
+);
+
+
+
+
+
+if(confirmDelete){
+
+
+
+bookings =
+
+bookings.filter(
+
+booking => booking.id !== id
+
+);
 
 
 
@@ -317,11 +382,12 @@ JSON.stringify(bookings)
 
 
 
-alert(
 
-"Booking status updated"
+displayBookings();
 
-);
+
+
+}
 
 
 
@@ -333,5 +399,92 @@ alert(
 
 
 
+
+
+// ================================
+// SEARCH BOOKINGS
+// ================================
+
+
+if(searchBookings){
+
+
+
+searchBookings.addEventListener(
+"input",
+function(){
+
+
+
+const value =
+
+this.value.toLowerCase();
+
+
+
+
+
+const filteredBookings =
+
+bookings.filter(booking =>
+
+
+
+(booking.name || "")
+
+.toLowerCase()
+
+.includes(value)
+
+
+
+||
+
+
+
+(booking.service || "")
+
+.toLowerCase()
+
+.includes(value)
+
+
+
+||
+
+
+
+(booking.vehicle || "")
+
+.toLowerCase()
+
+.includes(value)
+
+
+
+);
+
+
+
+
+
+displayBookings(filteredBookings);
+
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+
+// INITIAL LOAD
 
 displayBookings();
