@@ -7,56 +7,142 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
 <title>
-Lets Essentials | Manage Products
+Lets Essentials | Products
 </title>
 
-<link rel="stylesheet" href="../css/style.css">
 
-<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="css/admin.css">
+
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+<meta name="robots" content="noindex,nofollow">
 
 </head>
+
 
 
 <body>
 
 
-
-<header id="header">
-
-
-<div class="container">
+<div class="admin-wrapper">
 
 
-<nav class="navbar">
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
 
 
-<a href="dashboard.html" class="logo">
+<div class="sidebar-header">
 
 
 <img src="../images/logo.png">
 
 
-<div>
-
 <h2>
-Product Management
+Lets Essentials
 </h2>
 
+
 <span>
-Lets Essentials
+Admin Panel v3.0
 </span>
+
 
 </div>
 
+
+
+
+
+<nav class="sidebar-menu">
+
+
+<a href="dashboard.html">
+
+<i class="fas fa-chart-line"></i>
+
+<span>
+Dashboard
+</span>
 
 </a>
 
 
 
-<a href="dashboard.html" class="btn btn-secondary">
+<a href="products.html" class="active">
 
-Dashboard
+<i class="fas fa-box"></i>
+
+<span>
+Products
+</span>
+
+</a>
+
+
+
+
+<a href="orders.html">
+
+<i class="fas fa-cart-shopping"></i>
+
+<span>
+Orders
+</span>
+
+</a>
+
+
+
+<a href="bookings.html">
+
+<i class="fas fa-calendar"></i>
+
+<span>
+Bookings
+</span>
+
+</a>
+
+
+
+<a href="customers.html">
+
+<i class="fas fa-users"></i>
+
+<span>
+Customers
+</span>
+
+</a>
+
+
+
+<a href="settings.html">
+
+<i class="fas fa-gear"></i>
+
+<span>
+Settings
+</span>
+
+</a>
+
+
+
+<a href="#" id="adminLogout">
+
+<i class="fas fa-right-from-bracket"></i>
+
+<span>
+Logout
+</span>
 
 </a>
 
@@ -64,7 +150,39 @@ Dashboard
 </nav>
 
 
+</aside>
+
+
+
+
+
+
+
+<!-- MAIN CONTENT -->
+
+
+<main class="main-content">
+
+
+
+<header class="topbar">
+
+
+<div>
+
+
+<h1>
+Products
+</h1>
+
+
+<p>
+Manage your store inventory
+</p>
+
+
 </div>
+
 
 
 </header>
@@ -75,23 +193,25 @@ Dashboard
 
 
 
-
-<section class="services">
-
-
-<div class="container">
+<section class="admin-content">
 
 
-<div class="section-title">
 
 
-<span>
-STORE MANAGEMENT
-</span>
+
+
+
+<!-- ADD PRODUCT -->
+
+
+<div class="card">
+
+
+<div class="card-title">
 
 
 <h2>
-Products
+Add New Product
 </h2>
 
 
@@ -101,9 +221,73 @@ Products
 
 
 
+<form id="productForm" class="admin-form">
 
 
-<div id="adminProductsContainer">
+
+<input 
+type="text"
+id="productName"
+placeholder="Product Name"
+required>
+
+
+
+<input 
+type="number"
+id="productPrice"
+placeholder="Price"
+required>
+
+
+
+<input 
+type="text"
+id="productCategory"
+placeholder="Category"
+required>
+
+
+
+<input 
+type="number"
+id="productStock"
+placeholder="Stock Quantity"
+required>
+
+
+
+<input 
+type="text"
+id="productImage"
+placeholder="Image path e.g images/products/item.jpg"
+required>
+
+
+
+<textarea
+id="productDescription"
+placeholder="Product Description">
+</textarea>
+
+
+
+
+<button class="btn btn-primary">
+
+<i class="fas fa-plus"></i>
+
+Add Product
+
+</button>
+
+
+
+
+</form>
+
+
+<p id="productMessage"></p>
 
 
 </div>
@@ -112,7 +296,106 @@ Products
 
 
 
+
+
+
+
+<!-- PRODUCT LIST -->
+
+
+<div class="card">
+
+
+<div class="card-title">
+
+
+<h2>
+Inventory
+</h2>
+
+
+
+<input 
+type="search"
+id="searchProducts"
+placeholder="Search products...">
+
+
 </div>
+
+
+
+
+
+<div class="table-wrapper">
+
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+
+<th>
+Image
+</th>
+
+
+<th>
+Product
+</th>
+
+
+<th>
+Category
+</th>
+
+
+<th>
+Price
+</th>
+
+
+<th>
+Stock
+</th>
+
+
+<th>
+Actions
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody id="productsTable">
+
+
+</tbody>
+
+
+
+</table>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
 
 
 </section>
@@ -120,12 +403,25 @@ Products
 
 
 
+</main>
 
 
 
-<script src="js/products-manager.js"></script>
+</div>
+
+
+
+
+
+
+
+<script src="js/admin.js"></script>
+
+<script src="js/products.js"></script>
+
 
 
 </body>
+
 
 </html>
