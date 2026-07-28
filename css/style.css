@@ -3336,3 +3336,38 @@ color:var(--primary)!important;
 font-weight:700;
 
 }
+
+/* =========================================
+   ORDER SUCCESS MESSAGE
+========================================= */
+
+
+.order-result{
+
+
+background:#ecfdf5;
+
+
+padding:25px;
+
+
+border-left:5px solid #10b981;
+
+
+border-radius:10px;
+
+
+margin-top:20px;
+
+
+}
+
+
+
+.order-result h3{
+
+
+color:#059669;
+
+
+}
