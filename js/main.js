@@ -363,3 +363,55 @@ window.addEventListener("load",()=>{
 
 
 });
+
+/* =========================================
+   CUSTOMER ACCOUNT NAVIGATION
+========================================= */
+
+
+const accountLink =
+document.getElementById("accountLink");
+
+
+
+if(accountLink){
+
+
+const customerLoggedIn =
+localStorage.getItem(
+"customerLoggedIn"
+);
+
+
+
+
+
+if(customerLoggedIn === "true"){
+
+
+accountLink.href =
+"account/dashboard.html";
+
+
+accountLink.textContent =
+"My Account";
+
+
+}
+
+else{
+
+
+accountLink.href =
+"account/login.html";
+
+
+accountLink.textContent =
+"My Account";
+
+
+}
+
+
+
+}
