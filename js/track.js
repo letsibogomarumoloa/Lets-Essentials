@@ -1,53 +1,8 @@
 // ======================================
-// LETS ESSENTIALS ORDER TRACKING SYSTEM
-// track.js
+// LETS ESSENTIALS ORDER TRACKING
 // ======================================
 
 
-
-function trackOrder(){
-
-
-let enteredOrder =
-
-document.getElementById("orderNumber").value
-.trim()
-.toUpperCase();
-
-
-
-
-let result =
-
-document.getElementById("trackingResult");
-
-
-
-
-
-if(!enteredOrder){
-
-
-result.innerHTML =
-
-`
-<p style="color:red">
-
-Please enter your order number.
-
-</p>
-`;
-
-return;
-
-}
-
-
-
-
-
-
-// Get all orders
 
 let orders = JSON.parse(
 
@@ -60,11 +15,32 @@ localStorage.getItem("orders")
 
 
 
-// Search order
+function trackOrder(){
+
+
+
+let orderNumber =
+
+document.getElementById("orderNumber").value.trim();
+
+
+
+
+
+let result =
+
+document.getElementById("trackingResult");
+
+
+
+
+
 
 let order = orders.find(item =>
 
-item.id === enteredOrder
+
+item.id === orderNumber
+
 
 );
 
@@ -73,8 +49,7 @@ item.id === enteredOrder
 
 
 
-
-if(order){
+if(!order){
 
 
 
@@ -82,19 +57,141 @@ result.innerHTML =
 
 `
 
-<h3>
-✅ Order Found
-</h3>
+<div class="profile-card">
 
+
+<h3>
+❌ Order Not Found
+</h3>
 
 
 <p>
 
-Order Number:
-
-<b>${order.id}</b>
+Please check your order number.
 
 </p>
+
+
+</div>
+
+`;
+
+
+
+return;
+
+
+}
+
+
+
+
+
+
+
+let stages = [
+
+"Processing",
+
+"Confirmed",
+
+"Preparing",
+
+"Out For Delivery",
+
+"Completed"
+
+];
+
+
+
+
+
+
+
+let current = stages.indexOf(order.status);
+
+
+
+
+
+
+let progress = "";
+
+
+
+
+
+
+stages.forEach((stage,index)=>{
+
+
+
+if(index <= current){
+
+
+
+progress +=
+
+
+`
+
+<div class="step completed">
+
+✅ ${stage}
+
+</div>
+
+`;
+
+
+
+}
+
+else{
+
+
+progress +=
+
+
+`
+
+<div class="step">
+
+⚪ ${stage}
+
+</div>
+
+`;
+
+
+
+}
+
+
+
+});
+
+
+
+
+
+
+
+
+result.innerHTML =
+
+
+`
+
+<div class="profile-card">
+
+
+<h2>
+
+Order ${order.id}
+
+</h2>
 
 
 
@@ -108,12 +205,22 @@ ${order.customer}
 
 
 
+<p>
+
+Total:
+
+P${order.total}
+
+</p>
+
+
+
 
 <p>
 
-Order Date:
+Delivery Method:
 
-${order.date}
+${order.delivery}
 
 </p>
 
@@ -122,120 +229,21 @@ ${order.date}
 
 
 <h3>
+
 Order Progress
+
 </h3>
 
 
-
-
-
-<div class="timeline">
-
-
-
-<p class="${order.status === 'Processing' ? 'active':''}">
-
-🟡 Processing
-
-</p>
-
-
-
-
-<p class="${order.status === 'Ordered From Supplier' ? 'active':''}">
-
-🔵 Ordered From Supplier
-
-</p>
-
-
-
-
-
-<p class="${order.status === 'Arrived In Botswana' ? 'active':''}">
-
-🟣 Arrived In Botswana
-
-</p>
-
-
-
-
-
-<p class="${order.status === 'Out For Delivery' ? 'active':''}">
-
-🟢 Out For Delivery
-
-</p>
-
-
-
-
-
-<p class="${order.status === 'Delivered' ? 'active':''}">
-
-✅ Delivered
-
-</p>
+${progress}
 
 
 
 </div>
 
-
-
-
-
-<h3>
-Products
-</h3>
-
-
-
-<p>
-
-${
-
-order.products.map(product =>
-
-product.name +
-
-" x" +
-
-product.quantity
-
-).join("<br>")
-
-}
-
-</p>
-
 `;
 
 
-
-}
-
-else{
-
-
-result.innerHTML =
-
-`
-
-<p style="color:red">
-
-❌ Order not found.
-
-Please check your order number.
-
-</p>
-
-`;
-
-
-
-}
 
 
 
