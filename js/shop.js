@@ -1,11 +1,15 @@
 /* =========================================
    LETS ESSENTIALS
-   SHOP PRODUCT LOADER
+   SHOP PRODUCTS DISPLAY
 ========================================= */
 
 
-const productContainer =
-document.getElementById("productContainer");
+const productsContainer =
+document.getElementById(
+"productsContainer"
+);
+
+
 
 
 let products = JSON.parse(
@@ -18,75 +22,47 @@ localStorage.getItem("letsProducts")
 
 
 
-function loadProducts(){
-
-
-if(!productContainer)
-
-return;
-
-
-
-productContainer.innerHTML="";
-
-
 
 
 if(products.length === 0){
 
 
-productContainer.innerHTML = `
-
-
-<div class="tracking-box">
-
-<h3>
-No Products Available
-</h3>
+productsContainer.innerHTML = `
 
 
 <p>
-Products will appear here once added.
+
+No products available yet.
+
 </p>
-
-
-</div>
 
 
 `;
 
-return;
 
 
 }
 
+else{
 
 
 
+products.forEach(product => {
 
-products.forEach(product=>{
 
 
-productContainer.innerHTML += `
+productsContainer.innerHTML += `
 
 
 
 <div class="product-card">
 
 
-<img src="${product.image || 'images/products/default.jpg'}"
+
+<img 
+src="${product.image}"
 alt="${product.name}">
 
-
-
-<div class="product-info">
-
-
-<span class="product-category">
-
-${product.category}
-
-</span>
 
 
 
@@ -100,43 +76,39 @@ ${product.name}
 
 
 
-<div class="product-footer">
+
+<p>
+
+${product.description}
+
+</p>
 
 
-<strong>
+
+
+
+<h4>
 
 P${product.price}
 
-</strong>
+</h4>
+
 
 
 
 
 <button 
-class="btn-small addCart"
-
-data-id="${product.id}"
-
-data-name="${product.name}"
-
-data-price="${product.price}">
-
+class="btn btn-primary"
+onclick="addToCart(${product.id})">
 
 Add To Cart
-
 
 </button>
 
 
 
-
 </div>
 
-
-</div>
-
-
-</div>
 
 
 `;
@@ -147,13 +119,6 @@ Add To Cart
 
 
 
-
-// reconnect cart buttons
-
-activateCartButtons();
-
-
-
 }
 
 
@@ -162,48 +127,24 @@ activateCartButtons();
 
 
 
-function activateCartButtons(){
 
-
-document.querySelectorAll(".addCart")
-.forEach(button=>{
-
-
-button.addEventListener("click",()=>{
-
-
-const product = {
-
-
-id:String(button.dataset.id),
-
-
-name:button.dataset.name,
-
-
-price:Number(button.dataset.price),
-
-
-quantity:1
-
-
-};
-
+function addToCart(productID){
 
 
 
 let cart = JSON.parse(
 
-localStorage.getItem("letsCart")
+localStorage.getItem("cart")
 
 ) || [];
 
 
 
 
-const existing = cart.find(item=>
 
-item.id === product.id
+const product = products.find(
+
+item => item.id === productID
 
 );
 
@@ -211,19 +152,7 @@ item.id === product.id
 
 
 
-if(existing){
-
-
-existing.quantity++;
-
-
-}else{
-
-
 cart.push(product);
-
-
-}
 
 
 
@@ -231,15 +160,13 @@ cart.push(product);
 
 localStorage.setItem(
 
-"letsCart",
+"cart",
 
 JSON.stringify(cart)
 
 );
 
 
-
-updateCartCount();
 
 
 
@@ -251,17 +178,4 @@ product.name + " added to cart"
 
 
 
-});
-
-
 }
-
-
-
-}
-
-
-
-
-
-loadProducts();
