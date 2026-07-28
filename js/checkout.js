@@ -1,6 +1,6 @@
 /* =========================================
    LETS ESSENTIALS
-   CHECKOUT SYSTEM
+   CHECKOUT + WHATSAPP SYSTEM
 ========================================= */
 
 
@@ -27,8 +27,6 @@ localStorage.getItem("letsCart")
 
 
 
-
-// DISPLAY ORDER SUMMARY
 
 
 function showCheckout(){
@@ -64,12 +62,11 @@ checkoutItems.innerHTML += `
 
 ${item.name}
 
-x ${item.quantity}
+x${item.quantity}
 
 -
 
 P${itemTotal}
-
 
 </p>
 
@@ -89,20 +86,20 @@ checkoutTotal.textContent =
 }
 
 
+return total;
+
 
 }
 
 
 
-showCheckout();
+const orderTotal = showCheckout();
 
 
 
 
 
 
-
-// CREATE ORDER
 
 
 if(checkoutForm){
@@ -112,6 +109,53 @@ checkoutForm.addEventListener("submit",(e)=>{
 
 
 e.preventDefault();
+
+
+
+
+
+const customer =
+
+document.getElementById(
+"checkoutName"
+).value;
+
+
+
+const phone =
+
+document.getElementById(
+"checkoutPhone"
+).value;
+
+
+
+const email =
+
+document.getElementById(
+"checkoutEmail"
+).value;
+
+
+
+const address =
+
+document.getElementById(
+"checkoutAddress"
+).value;
+
+
+
+const payment =
+
+document.getElementById(
+"paymentMethod"
+).value;
+
+
+
+
+
 
 
 
@@ -131,45 +175,28 @@ Math.random()*900000
 
 
 
+
+
+
 const order = {
 
 
 id:orderNumber,
 
 
-customer:
-
-document.getElementById(
-"checkoutName"
-).value,
+customer:customer,
 
 
-phone:
-
-document.getElementById(
-"checkoutPhone"
-).value,
+phone:phone,
 
 
-email:
-
-document.getElementById(
-"checkoutEmail"
-).value,
+email:email,
 
 
-address:
-
-document.getElementById(
-"checkoutAddress"
-).value,
+address:address,
 
 
-payment:
-
-document.getElementById(
-"paymentMethod"
-).value,
+payment:payment,
 
 
 items:checkoutCart,
@@ -214,10 +241,117 @@ JSON.stringify(orders)
 
 
 
+
+// CREATE WHATSAPP MESSAGE
+
+
+let whatsappMessage =
+
+`Hello Lets Essentials 👋
+
+I would like to place an order.
+
+Order Number:
+${orderNumber}
+
+
+Customer:
+${customer}
+
+
+Products:
+`;
+
+
+
+
+
+
+checkoutCart.forEach(item=>{
+
+
+whatsappMessage +=
+
+`
+
+${item.name}
+
+Quantity: ${item.quantity}
+
+Price: P${item.price * item.quantity}
+
+`;
+
+
+});
+
+
+
+
+
+
+whatsappMessage +=
+
+`
+
+Total:
+P${orderTotal}
+
+
+Delivery Address:
+${address}
+
+
+Payment:
+${payment}
+
+Thank you.
+`;
+
+
+
+
+
+
+
+
+// BUSINESS WHATSAPP NUMBER
+
+const businessNumber =
+
+"267XXXXXXXX";
+
+
+
+
+
+
+
+
+window.open(
+
+"https://wa.me/" +
+
+businessNumber +
+
+"?text=" +
+
+encodeURIComponent(
+whatsappMessage
+),
+
+"_blank"
+
+);
+
+
+
+
+
+
 localStorage.removeItem(
 "letsCart"
 );
-
 
 
 
@@ -230,18 +364,28 @@ document.getElementById(
 
 `
 
+<div class="order-result">
+
+
 <h3>
-Order Successful!
+Order Created Successfully!
 </h3>
 
+
 <p>
+
 Your order number is:
-<strong>${orderNumber}</strong>
+
+<strong>
+${orderNumber}
+</strong>
+
 </p>
 
-`
 
-;
+</div>
+
+`;
 
 
 
@@ -251,8 +395,8 @@ checkoutForm.reset();
 
 
 
-
-
 });
+
+
 
 }
