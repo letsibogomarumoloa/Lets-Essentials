@@ -3246,3 +3246,24 @@ margin:15px 0;
 margin-bottom:8px;
 
 }
+
+/* =========================================
+   ADMIN BOOKING CARDS
+========================================= */
+
+
+#bookingsContainer{
+
+display:grid;
+
+gap:25px;
+
+}
+
+
+
+#bookingsContainer .checkout-box{
+
+border-left:5px solid var(--primary);
+
+}
