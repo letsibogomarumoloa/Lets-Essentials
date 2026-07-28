@@ -1,0 +1,253 @@
+/* =========================================
+   LETS ESSENTIALS
+   ADMIN PANEL V3.0
+   Author: ChatGPT
+========================================= */
+
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f4f6f9;
+    color:#222;
+}
+
+/* VARIABLES */
+
+:root{
+
+    --primary:#c1121f;
+    --primary-dark:#9b0d18;
+
+    --dark:#111111;
+
+    --sidebar:#1b1b1b;
+
+    --light:#ffffff;
+
+    --gray:#f4f6f9;
+
+    --border:#e3e3e3;
+
+    --success:#16a34a;
+
+    --warning:#f59e0b;
+
+    --danger:#dc2626;
+
+    --radius:12px;
+
+    --shadow:
+    0 8px 25px rgba(0,0,0,.08);
+
+}
+
+/* LINKS */
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+/* BUTTONS */
+
+.btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:12px 24px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-weight:600;
+
+}
+
+.btn-primary{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+.btn-primary:hover{
+
+    background:var(--primary-dark);
+
+}
+
+.btn-secondary{
+
+    background:#222;
+
+    color:#fff;
+
+}
+
+.btn-secondary:hover{
+
+    background:#000;
+
+}
+
+/* LAYOUT */
+
+.admin-wrapper{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+/* SIDEBAR */
+
+.sidebar{
+
+    width:270px;
+
+    background:var(--sidebar);
+
+    color:#fff;
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    height:100vh;
+
+    overflow-y:auto;
+
+}
+
+.sidebar-header{
+
+    padding:30px 20px;
+
+    text-align:center;
+
+    border-bottom:1px solid rgba(255,255,255,.1);
+
+}
+
+.sidebar-header img{
+
+    width:70px;
+
+    margin-bottom:15px;
+
+}
+
+.sidebar-header h2{
+
+    font-size:22px;
+
+}
+
+.sidebar-header span{
+
+    color:#bbb;
+
+    font-size:14px;
+
+}
+
+.sidebar-menu{
+
+    padding:20px;
+
+}
+
+.sidebar-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    margin-bottom:10px;
+
+    transition:.3s;
+
+}
+
+.sidebar-menu a:hover{
+
+    background:var(--primary);
+
+}
+
+.sidebar-menu a.active{
+
+    background:var(--primary);
+
+}
+
+/* MAIN CONTENT */
+
+.main-content{
+
+    margin-left:270px;
+
+    width:calc(100% - 270px);
+
+}
+
+.topbar{
+
+    background:#fff;
+
+    padding:20px 35px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:var(--shadow);
+
+}
+
+.topbar h1{
+
+    font-size:28px;
+
+}
+
+.admin-content{
+
+    padding:35px;
+
+}
