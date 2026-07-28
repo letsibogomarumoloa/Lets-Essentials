@@ -411,7 +411,17 @@ function displayCart(){
 
         "P" + total;
 
+const finalTotal =
+document.getElementById("finalTotal");
 
+
+if(finalTotal){
+
+    finalTotal.textContent =
+    "P" + total;
+
+}
+       
     }
 
 
