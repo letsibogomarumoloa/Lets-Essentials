@@ -16,7 +16,8 @@ Lets Essentials Dashboard
 
 
 <link rel="stylesheet" href="../css/style.css">
-  
+
+
 <meta name="robots" content="noindex, nofollow">
 
 </head>
@@ -39,7 +40,7 @@ Lets Essentials Dashboard
 <a href="dashboard.html" class="logo">
 
 
-<img src="../images/logo.png">
+<img src="../images/logo.png" alt="Lets Essentials Logo">
 
 
 <div>
@@ -61,13 +62,11 @@ Lets Essentials
 
 
 
-
-<a href="login.html"
-class="btn btn-secondary">
+<button id="adminLogout" class="btn btn-secondary">
 
 Logout
 
-</a>
+</button>
 
 
 
@@ -78,6 +77,7 @@ Logout
 
 
 </header>
+
 
 
 
@@ -138,8 +138,7 @@ Orders
 </p>
 
 
-<a href="orders.html"
-class="card-link">
+<a href="orders.html" class="card-link">
 
 Manage
 
@@ -147,6 +146,7 @@ Manage
 
 
 </div>
+
 
 
 
@@ -177,8 +177,7 @@ Bookings
 </p>
 
 
-<a href="bookings.html"
-class="card-link">
+<a href="bookings.html" class="card-link">
 
 Manage
 
@@ -186,6 +185,7 @@ Manage
 
 
 </div>
+
 
 
 
@@ -209,15 +209,14 @@ Products
 </h3>
 
 
-<p>
+<p id="totalProducts">
 
-Manage Store Items
+0 Products
 
 </p>
 
 
-<a href="products.html"
-class="card-link">
+<a href="products.html" class="card-link">
 
 Manage
 
@@ -231,23 +230,115 @@ Manage
 </div>
 
 
+
+<br><br>
+
+
+
+
+
+
+
+<div class="checkout-box">
+
+
+<h2>
+Add New Product
+</h2>
+
+
+
+<form id="productForm">
+
+
+
+<input 
+type="text"
+id="productName"
+placeholder="Product Name"
+required>
+
+
+
+<input 
+type="number"
+id="productPrice"
+placeholder="Price (P)"
+required>
+
+
+
+<input 
+type="text"
+id="productCategory"
+placeholder="Category"
+required>
+
+
+
+<input 
+type="text"
+id="productImage"
+placeholder="Image Path (example: images/products/item.jpg)"
+required>
+
+
+
+<input 
+type="number"
+id="productStock"
+placeholder="Stock Quantity"
+required>
+
+
+
+<textarea
+id="productDescription"
+placeholder="Product Description">
+</textarea>
+
+
+
+
+
+<button class="btn btn-primary">
+
+Add Product
+
+</button>
+
+
+
+</form>
+
+
+
+<div id="productMessage"></div>
+
+
+
+</div>
+
+
+
+
+
+
 </div>
 
 
 </section>
 
-<button id="adminLogout"
-class="btn btn-secondary">
 
-Logout
-
-</button>
 
 
 
 
 
 <script src="js/admin.js"></script>
+
+<script src="js/products.js"></script>
+
 
 
 </body>
