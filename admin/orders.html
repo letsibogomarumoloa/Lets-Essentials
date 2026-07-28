@@ -9,64 +9,173 @@
 
 
 <title>
-Lets Essentials | Manage Orders
+Lets Essentials | Orders
 </title>
 
 
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="css/admin.css">
 
-  <meta name="robots" content="noindex, nofollow">
-  
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+<meta name="robots" content="noindex,nofollow">
+
 </head>
-
 
 
 <body>
 
 
-<header id="header">
-
-<div class="container">
+<div class="admin-wrapper">
 
 
-<nav class="navbar">
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
 
 
-<a href="dashboard.html" class="logo">
+<div class="sidebar-header">
 
 
 <img src="../images/logo.png">
 
 
-<div>
-
 <h2>
-Orders
+Lets Essentials
 </h2>
 
+
 <span>
-Lets Essentials Admin
+Admin Panel v3.0
 </span>
 
 
 </div>
 
 
+
+
+<nav class="sidebar-menu">
+
+
+<a href="dashboard.html">
+
+<i class="fas fa-chart-line"></i>
+
+<span>
+Dashboard
+</span>
+
 </a>
 
 
 
+<a href="products.html">
 
-<a href="dashboard.html"
-class="btn btn-secondary">
+<i class="fas fa-box"></i>
 
-Dashboard
+<span>
+Products
+</span>
+
+</a>
+
+
+
+<a href="orders.html" class="active">
+
+<i class="fas fa-cart-shopping"></i>
+
+<span>
+Orders
+</span>
+
+</a>
+
+
+
+<a href="bookings.html">
+
+<i class="fas fa-calendar"></i>
+
+<span>
+Bookings
+</span>
+
+</a>
+
+
+
+<a href="customers.html">
+
+<i class="fas fa-users"></i>
+
+<span>
+Customers
+</span>
+
+</a>
+
+
+
+<a href="settings.html">
+
+<i class="fas fa-gear"></i>
+
+<span>
+Settings
+</span>
+
+</a>
+
+
+
+<a href="#" id="adminLogout">
+
+<i class="fas fa-right-from-bracket"></i>
+
+<span>
+Logout
+</span>
 
 </a>
 
 
 
 </nav>
+
+
+</aside>
+
+
+
+
+
+
+
+
+<!-- MAIN -->
+
+<main class="main-content">
+
+
+
+<header class="topbar">
+
+
+<div>
+
+<h1>
+Orders
+</h1>
+
+
+<p>
+Manage customer purchases
+</p>
 
 
 </div>
@@ -81,18 +190,16 @@ Dashboard
 
 
 
-<section class="services">
+<section class="admin-content">
 
 
-<div class="container">
 
 
-<div class="section-title">
+
+<div class="card">
 
 
-<span>
-ADMIN ORDERS
-</span>
+<div class="card-title">
 
 
 <h2>
@@ -100,9 +207,10 @@ Customer Orders
 </h2>
 
 
-<p>
-View and manage all customer purchases.
-</p>
+<input 
+type="search"
+id="searchOrders"
+placeholder="Search orders...">
 
 
 </div>
@@ -112,8 +220,69 @@ View and manage all customer purchases.
 
 
 
+<div class="table-wrapper">
 
-<div id="ordersContainer">
+
+
+<table>
+
+
+<thead>
+
+
+<tr>
+
+
+<th>
+Order ID
+</th>
+
+
+<th>
+Customer
+</th>
+
+
+<th>
+Items
+</th>
+
+
+<th>
+Total
+</th>
+
+
+<th>
+Status
+</th>
+
+
+<th>
+Actions
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody id="ordersTable">
+
+
+</tbody>
+
+
+
+</table>
+
+
+
+</div>
+
 
 
 </div>
@@ -122,11 +291,17 @@ View and manage all customer purchases.
 
 
 
-</div>
 
 
 </section>
 
+
+
+</main>
+
+
+
+</div>
 
 
 
@@ -138,7 +313,7 @@ View and manage all customer purchases.
 <script src="js/orders.js"></script>
 
 
-</body>
 
+</body>
 
 </html>
