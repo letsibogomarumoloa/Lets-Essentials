@@ -1,8 +1,7 @@
 /* =========================================
    LETS ESSENTIALS
-   PRODUCT MANAGEMENT
+   ADMIN PRODUCT MANAGEMENT
 ========================================= */
-
 
 
 const productForm =
@@ -10,10 +9,55 @@ document.getElementById("productForm");
 
 
 
-const productsContainer =
-document.getElementById("productsContainer");
 
 
+function updateProductCount(){
+
+
+let products = JSON.parse(
+
+localStorage.getItem("letsProducts")
+
+) || [];
+
+
+
+const counter =
+document.getElementById("totalProducts");
+
+
+
+if(counter){
+
+counter.textContent =
+products.length + " Products";
+
+}
+
+
+}
+
+
+
+
+
+updateProductCount();
+
+
+
+
+
+
+
+
+if(productForm){
+
+
+
+productForm.addEventListener("submit",(e)=>{
+
+
+e.preventDefault();
 
 
 
@@ -28,30 +72,11 @@ localStorage.getItem("letsProducts")
 
 
 
-
-
-
-// ADD PRODUCT
-
-
-if(productForm){
-
-
-productForm.addEventListener("submit",(e)=>{
-
-
-e.preventDefault();
-
-
-
-
-
-const product = {
+const newProduct = {
 
 
 
 id:
-
 Date.now(),
 
 
@@ -64,13 +89,13 @@ document.getElementById(
 
 
 
+
 price:
 
-Number(
 document.getElementById(
 "productPrice"
-).value
-),
+).value,
+
 
 
 
@@ -82,10 +107,29 @@ document.getElementById(
 
 
 
+
 image:
 
 document.getElementById(
 "productImage"
+).value,
+
+
+
+
+stock:
+
+document.getElementById(
+"productStock"
+).value,
+
+
+
+
+description:
+
+document.getElementById(
+"productDescription"
 ).value
 
 
@@ -97,8 +141,8 @@ document.getElementById(
 
 
 
+products.push(newProduct);
 
-products.push(product);
 
 
 
@@ -110,6 +154,25 @@ localStorage.setItem(
 JSON.stringify(products)
 
 );
+
+
+
+
+
+
+document.getElementById(
+"productMessage"
+).innerHTML = `
+
+
+<p style="color:green">
+
+Product added successfully!
+
+</p>
+
+
+`;
 
 
 
@@ -119,7 +182,7 @@ productForm.reset();
 
 
 
-displayProducts();
+updateProductCount();
 
 
 
@@ -128,189 +191,3 @@ displayProducts();
 
 
 }
-
-
-
-
-
-
-
-
-
-// DISPLAY PRODUCTS
-
-
-function displayProducts(){
-
-
-
-if(!productsContainer)
-
-return;
-
-
-
-
-
-productsContainer.innerHTML="";
-
-
-
-
-
-if(products.length===0){
-
-
-
-productsContainer.innerHTML=`
-
-<div class="tracking-box">
-
-<h3>
-No Products Added
-</h3>
-
-
-<p>
-Add products using the form above.
-</p>
-
-</div>
-
-`;
-
-return;
-
-
-}
-
-
-
-
-
-
-
-
-products.forEach(product=>{
-
-
-
-productsContainer.innerHTML += `
-
-
-
-<div class="checkout-box">
-
-
-
-<h3>
-
-${product.name}
-
-</h3>
-
-
-
-<p>
-
-Category:
-
-${product.category}
-
-</p>
-
-
-
-<p>
-
-Price:
-
-P${product.price}
-
-</p>
-
-
-
-
-
-<button
-
-class="remove-btn"
-
-onclick="deleteProduct(${product.id})">
-
-
-Delete
-
-
-</button>
-
-
-
-
-</div>
-
-
-
-`;
-
-
-
-});
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// DELETE PRODUCT
-
-
-function deleteProduct(id){
-
-
-
-products = products.filter(product=>{
-
-
-return product.id !== id;
-
-
-});
-
-
-
-
-
-localStorage.setItem(
-
-"letsProducts",
-
-JSON.stringify(products)
-
-);
-
-
-
-
-displayProducts();
-
-
-
-}
-
-
-
-
-
-
-
-
-displayProducts();
