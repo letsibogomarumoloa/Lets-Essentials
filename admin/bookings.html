@@ -9,66 +9,181 @@
 
 
 <title>
-Lets Essentials | Auto Care Bookings
+Lets Essentials | Bookings
 </title>
 
 
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="css/admin.css">
 
-  <meta name="robots" content="noindex, nofollow">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+<meta name="robots" content="noindex,nofollow">
 
 </head>
-
 
 
 <body>
 
 
-
-<header id="header">
-
-
-<div class="container">
+<div class="admin-wrapper">
 
 
-<nav class="navbar">
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
 
 
-<a href="dashboard.html" class="logo">
+<div class="sidebar-header">
 
 
 <img src="../images/logo.png">
 
 
-<div>
-
 <h2>
-Auto Care Bookings
+Lets Essentials
 </h2>
 
 
 <span>
-Lets Essentials Admin
+Admin Panel v3.0
 </span>
 
 
 </div>
 
 
-</a>
 
 
 
+<nav class="sidebar-menu">
 
-<a href="dashboard.html"
-class="btn btn-secondary">
 
+<a href="dashboard.html">
+
+<i class="fas fa-chart-line"></i>
+
+<span>
 Dashboard
+</span>
 
 </a>
+
+
+
+<a href="products.html">
+
+<i class="fas fa-box"></i>
+
+<span>
+Products
+</span>
+
+</a>
+
+
+
+
+<a href="orders.html">
+
+<i class="fas fa-cart-shopping"></i>
+
+<span>
+Orders
+</span>
+
+</a>
+
+
+
+
+<a href="bookings.html" class="active">
+
+<i class="fas fa-calendar-check"></i>
+
+<span>
+Bookings
+</span>
+
+</a>
+
+
+
+
+<a href="customers.html">
+
+<i class="fas fa-users"></i>
+
+<span>
+Customers
+</span>
+
+</a>
+
+
+
+
+<a href="settings.html">
+
+<i class="fas fa-gear"></i>
+
+<span>
+Settings
+</span>
+
+</a>
+
+
+
+
+<a href="#" id="adminLogout">
+
+<i class="fas fa-right-from-bracket"></i>
+
+<span>
+Logout
+</span>
+
+</a>
+
 
 
 </nav>
+
+
+</aside>
+
+
+
+
+
+
+
+
+
+<!-- MAIN CONTENT -->
+
+<main class="main-content">
+
+
+
+<header class="topbar">
+
+
+<div>
+
+
+<h1>
+Bookings
+</h1>
+
+
+<p>
+Manage Auto Care appointments
+</p>
 
 
 </div>
@@ -82,29 +197,102 @@ Dashboard
 
 
 
-
-<section class="services">
-
-
-<div class="container">
+<section class="admin-content">
 
 
-<div class="section-title">
 
 
-<span>
-AUTO CARE ADMIN
-</span>
+
+
+<div class="card">
+
+
+<div class="card-title">
 
 
 <h2>
-Vehicle Appointments
+Auto Care Bookings
 </h2>
 
 
-<p>
-Manage customer vehicle bookings.
-</p>
+
+<input 
+type="search"
+id="searchBookings"
+placeholder="Search bookings...">
+
+
+
+</div>
+
+
+
+
+
+
+<div class="table-wrapper">
+
+
+
+<table>
+
+
+<thead>
+
+
+<tr>
+
+
+<th>
+Customer
+</th>
+
+
+<th>
+Vehicle
+</th>
+
+
+<th>
+Service
+</th>
+
+
+<th>
+Date
+</th>
+
+
+<th>
+Status
+</th>
+
+
+<th>
+Actions
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody id="bookingsTable">
+
+
+</tbody>
+
+
+
+</table>
+
+
+
+</div>
+
 
 
 </div>
@@ -113,21 +301,18 @@ Manage customer vehicle bookings.
 
 
 
-
-<div id="bookingsContainer">
-
-
-</div>
-
-
-
-
-
-</div>
 
 
 </section>
 
+
+
+</main>
+
+
+
+
+</div>
 
 
 
