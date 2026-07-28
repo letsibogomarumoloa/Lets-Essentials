@@ -1,347 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lets Essentials | Admin Dashboard</title>
 
+    <link rel="stylesheet" href="css/admin.css">
 
-<title>
-Lets Essentials Dashboard
-</title>
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-
-<link rel="stylesheet" href="../css/style.css">
-
-
-<meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="noindex,nofollow">
 
 </head>
 
-
-
 <body>
 
+<div class="admin-wrapper">
 
+    <!-- ==========================
+         SIDEBAR
+    =========================== -->
 
-<header id="header">
+    <aside class="sidebar">
 
+        <div class="sidebar-header">
 
-<div class="container">
+            <img src="../images/logo.png" alt="Lets Essentials">
 
+            <h2>Lets Essentials</h2>
 
-<nav class="navbar">
+            <span>Admin Panel v3.0</span>
 
+        </div>
 
-<a href="dashboard.html" class="logo">
+        <nav class="sidebar-menu">
 
+            <a href="dashboard.html" class="active">
 
-<img src="../images/logo.png" alt="Lets Essentials Logo">
+                <i class="fas fa-chart-line"></i>
 
+                <span>Dashboard</span>
 
-<div>
+            </a>
 
-<h2>
-Admin Dashboard
-</h2>
+            <a href="products.html">
 
-<span>
-Lets Essentials
-</span>
+                <i class="fas fa-box-open"></i>
 
+                <span>Products</span>
 
-</div>
+            </a>
 
+            <a href="orders.html">
 
-</a>
+                <i class="fas fa-shopping-cart"></i>
 
+                <span>Orders</span>
 
+            </a>
 
+            <a href="bookings.html">
 
-<button id="adminLogout" class="btn btn-secondary">
+                <i class="fas fa-calendar-check"></i>
 
-Logout
+                <span>Bookings</span>
 
-</button>
+            </a>
 
+            <a href="customers.html">
 
+                <i class="fas fa-users"></i>
 
-</nav>
+                <span>Customers</span>
 
+            </a>
 
-</div>
+            <a href="settings.html">
 
+                <i class="fas fa-gear"></i>
 
-</header>
+                <span>Settings</span>
 
+            </a>
 
+            <a href="#" id="adminLogout">
 
+                <i class="fas fa-right-from-bracket"></i>
 
+                <span>Logout</span>
 
+            </a>
 
+        </nav>
 
+    </aside>
 
-<section class="services">
 
 
-<div class="container">
+    <!-- ==========================
+         MAIN CONTENT
+    =========================== -->
 
+    <main class="main-content">
 
-<div class="section-title">
+        <header class="topbar">
 
+            <div>
 
-<span>
-CONTROL PANEL
-</span>
+                <h1>Dashboard</h1>
 
+                <p>
+                    Welcome back, Store Administrator
+                </p>
 
-<h2>
-Business Overview
-</h2>
+            </div>
 
+            <button class="btn btn-primary">
 
-</div>
+                <i class="fas fa-plus"></i>
 
+                Add Product
 
+            </button>
 
+        </header>
 
 
 
+        <section class="admin-content">
 
-<div class="services-grid">
+            <!-- ==========================
+                 STATISTICS
+            =========================== -->
 
+            <div class="stats-grid">
 
+                <div class="stat-card">
 
-<div class="service-card">
+                    <h3>Total Products</h3>
 
+                    <h2 id="productsCount">0</h2>
 
-<div class="service-icon">
+                    <p>Products currently available</p>
 
-<i class="fa-solid fa-cart-shopping"></i>
+                </div>
 
-</div>
+                <div class="stat-card">
 
+                    <h3>Total Orders</h3>
 
-<h3>
-Orders
-</h3>
+                    <h2 id="ordersCount">0</h2>
 
+                    <p>Orders received</p>
 
-<p id="totalOrders">
+                </div>
 
-0 Orders
+                <div class="stat-card">
 
-</p>
+                    <h3>Total Bookings</h3>
 
+                    <h2 id="bookingsCount">0</h2>
 
-<a href="orders.html" class="card-link">
+                    <p>Auto Care bookings</p>
 
-Manage
+                </div>
 
-</a>
+                <div class="stat-card">
 
+                    <h3>Customers</h3>
 
-</div>
+                    <h2 id="customersCount">0</h2>
 
+                    <p>Registered customers</p>
 
+                </div>
 
+            </div>
 
 
 
+            <!-- ==========================
+                 QUICK ACTIONS
+            =========================== -->
 
+            <div class="card">
 
+                <div class="card-title">
 
-<div class="service-card">
+                    <h2>Quick Actions</h2>
 
+                </div>
 
-<div class="service-icon">
+                <div class="stats-grid">
 
-<i class="fa-solid fa-calendar"></i>
+                    <a href="products.html" class="btn btn-primary">
 
-</div>
+                        <i class="fas fa-box-open"></i>
 
-
-<h3>
-Bookings
-</h3>
-
-
-<p id="totalBookings">
-
-0 Bookings
-
-</p>
-
-
-<a href="bookings.html" class="card-link">
-
-Manage
-
-</a>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="service-card">
-
-
-<div class="service-icon">
-
-<i class="fa-solid fa-box"></i>
-
-</div>
-
-
-<h3>
-Products
-</h3>
-
-
-<p id="totalProducts">
-
-0 Products
-
-</p>
-
-
-<a href="products.html" class="card-link">
-
-Manage
-
-</a>
-
-
-</div>
-
-
-
-</div>
-
-
-
-<br><br>
-
-
-
-
-
-
-
-<div class="checkout-box">
-
-
-<h2>
-Add New Product
-</h2>
-
-
-
-<form id="productForm">
-
-
-
-<input 
-type="text"
-id="productName"
-placeholder="Product Name"
-required>
-
-
-
-<input 
-type="number"
-id="productPrice"
-placeholder="Price (P)"
-required>
-
-
-
-<input 
-type="text"
-id="productCategory"
-placeholder="Category"
-required>
-
-
-
-<input 
-type="text"
-id="productImage"
-placeholder="Image Path (example: images/products/item.jpg)"
-required>
-
-
-
-<input 
-type="number"
-id="productStock"
-placeholder="Stock Quantity"
-required>
-
-
-
-<textarea
-id="productDescription"
-placeholder="Product Description">
-</textarea>
-
-
-
-
-
-<button class="btn btn-primary">
-
-Add Product
-
-</button>
-
-
-
-</form>
-
-
-
-<div id="productMessage"></div>
-
-
-
-</div>
-
-
-
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<script src="js/admin.js"></script>
-
-<script src="js/products.js"></script>
-
-
-
-</body>
-
-
-</html>
+                       
