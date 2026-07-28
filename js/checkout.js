@@ -272,6 +272,7 @@ items:checkoutCart,
 
 status:"Processing"
 
+date:new Date().toLocaleDateString()
 
 
 };
