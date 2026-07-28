@@ -3188,3 +3188,61 @@ p{
     }
 
 }
+
+/* =========================================
+   ADMIN PANELS
+========================================= */
+
+
+#ordersContainer{
+
+display:grid;
+
+gap:25px;
+
+}
+
+
+
+.admin-card{
+
+background:white;
+
+padding:30px;
+
+border-radius:var(--radius);
+
+box-shadow:var(--shadow);
+
+}
+
+
+
+.admin-card select,
+.checkout-box select{
+
+padding:12px;
+
+border-radius:8px;
+
+border:1px solid #ddd;
+
+margin-top:10px;
+
+}
+
+
+
+.checkout-box ul{
+
+margin:15px 0;
+
+}
+
+
+
+.checkout-box li{
+
+margin-bottom:8px;
+
+}
