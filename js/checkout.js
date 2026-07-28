@@ -294,7 +294,36 @@ localStorage.getItem("letsOrders")
 
 orders.push(order);
 
+// SAVE ORDER TO CUSTOMER ACCOUNT
 
+
+let currentCustomer = JSON.parse(
+
+localStorage.getItem("letsCustomer")
+
+);
+
+
+
+
+if(currentCustomer){
+
+
+currentCustomer.orders.push(order.id);
+
+
+
+localStorage.setItem(
+
+"letsCustomer",
+
+JSON.stringify(currentCustomer)
+
+);
+
+
+
+}
 
 localStorage.setItem(
 
