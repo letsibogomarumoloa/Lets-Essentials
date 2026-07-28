@@ -165,11 +165,35 @@ ${order.status}
 
 <p>
 
+Date:
+
+${order.date}
+
+</p>
+
+
+<p>
+
 Items:
 
-${order.items.length}
+${order.items.map(item=>
 
-product(s)
+item.name
+
+).join(", ")}
+
+</p>
+
+
+<p>
+
+Status:
+
+<strong>
+
+${order.status}
+
+</strong>
 
 </p>
 
