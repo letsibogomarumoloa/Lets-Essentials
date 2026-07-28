@@ -1,19 +1,28 @@
 /* =========================================
-   LETS ESSENTIALS ADMIN SYSTEM
+   LETS ESSENTIALS
+   ADMIN AUTHENTICATION
 ========================================= */
 
 
-const loginForm =
+const adminUsername = "owner";
+
+const adminPassword = "lets2026";
+
+
+
+
+// LOGIN
+
+
+const adminLoginForm =
 document.getElementById("adminLoginForm");
 
 
 
+if(adminLoginForm){
 
 
-if(loginForm){
-
-
-loginForm.addEventListener("submit",(e)=>{
+adminLoginForm.addEventListener("submit",(e)=>{
 
 
 e.preventDefault();
@@ -32,19 +41,18 @@ document.getElementById("adminPassword").value;
 
 
 
-
-// TEMPORARY ADMIN LOGIN
-
 if(
-username === "admin" &&
-password === "lets123"
+username === adminUsername &&
+password === adminPassword
 ){
 
 
-
 localStorage.setItem(
+
 "adminLoggedIn",
+
 "true"
+
 );
 
 
@@ -60,10 +68,9 @@ else{
 
 
 document.getElementById(
-"loginMessage"
-).innerHTML =
+"adminMessage"
+).innerHTML = `
 
-`
 
 <p style="color:red">
 
@@ -71,8 +78,8 @@ Incorrect login details
 
 </p>
 
-`;
 
+`;
 
 
 }
@@ -82,6 +89,54 @@ Incorrect login details
 });
 
 
+}
+
+
+
+
+
+
+
+
+// PROTECT ADMIN PAGES
+
+
+const adminLoggedIn =
+localStorage.getItem(
+"adminLoggedIn"
+);
+
+
+
+
+
+const currentPage =
+window.location.pathname;
+
+
+
+
+
+if(
+
+currentPage.includes("/admin/")
+
+&&
+
+!currentPage.includes("login.html")
+
+){
+
+
+if(adminLoggedIn !== "true"){
+
+
+window.location.href =
+"login.html";
+
+
+}
+
 
 }
 
@@ -91,54 +146,35 @@ Incorrect login details
 
 
 
-// DASHBOARD COUNTERS
 
 
-const orders =
-JSON.parse(
-
-localStorage.getItem("letsOrders")
-
-) || [];
+// LOGOUT
 
 
-
-
-const bookings =
-JSON.parse(
-
-localStorage.getItem("letsBookings")
-
-) || [];
+const logoutBtn =
+document.getElementById(
+"adminLogout"
+);
 
 
 
+if(logoutBtn){
 
 
-const totalOrders =
-document.getElementById("totalOrders");
+logoutBtn.addEventListener("click",()=>{
 
 
-
-const totalBookings =
-document.getElementById("totalBookings");
-
-
-
-
-
-if(totalOrders){
-
-totalOrders.innerHTML =
-orders.length + " Orders";
-
-}
+localStorage.removeItem(
+"adminLoggedIn"
+);
 
 
 
-if(totalBookings){
+window.location.href =
+"login.html";
 
-totalBookings.innerHTML =
-bookings.length + " Bookings";
+
+});
+
 
 }
