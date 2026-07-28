@@ -1,6 +1,6 @@
 /* =========================================
    LETS ESSENTIALS
-   SHOP PRODUCTS DISPLAY
+   SHOP PRODUCTS DISPLAY V2.0
 ========================================= */
 
 
@@ -8,7 +8,6 @@ const productsContainer =
 document.getElementById(
 "productsContainer"
 );
-
 
 
 
@@ -22,6 +21,11 @@ localStorage.getItem("letsProducts")
 
 
 
+
+
+// ================================
+// DISPLAY PRODUCTS
+// ================================
 
 
 if(products.length === 0){
@@ -79,7 +83,7 @@ ${product.name}
 
 <p>
 
-${product.description}
+${product.description || ""}
 
 </p>
 
@@ -97,13 +101,29 @@ P${product.price}
 
 
 
-<button 
+<p>
+
+Stock:
+${product.stock}
+
+</p>
+
+
+
+
+
+<button
+
 class="btn btn-primary"
+
 onclick="addToCart(${product.id})">
+
 
 Add To Cart
 
+
 </button>
+
 
 
 
@@ -126,6 +146,12 @@ Add To Cart
 
 
 
+
+
+
+// ================================
+// ADD TO CART
+// ================================
 
 
 function addToCart(productID){
@@ -152,7 +178,79 @@ item => item.id === productID
 
 
 
-cart.push(product);
+if(!product){
+
+alert(
+"Product not found"
+);
+
+return;
+
+}
+
+
+
+
+
+
+
+
+// CHECK IF PRODUCT EXISTS
+
+
+const existingProduct = cart.find(
+
+item => item.id === productID
+
+);
+
+
+
+
+
+
+
+if(existingProduct){
+
+
+
+existingProduct.quantity += 1;
+
+
+
+}
+
+else{
+
+
+
+cart.push({
+
+
+id: product.id,
+
+
+name: product.name,
+
+
+price: product.price,
+
+
+image: product.image,
+
+
+quantity:1
+
+
+});
+
+
+
+}
+
+
+
+
 
 
 
@@ -170,9 +268,12 @@ JSON.stringify(cart)
 
 
 
+
 alert(
 
-product.name + " added to cart"
+product.name +
+
+" added to cart"
 
 );
 
