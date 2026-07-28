@@ -1,6 +1,6 @@
 /* =========================================
    LETS ESSENTIALS
-   SHOP PRODUCTS DISPLAY V2.0
+   SHOP PRODUCTS DISPLAY V3.0
 ========================================= */
 
 
@@ -22,10 +22,6 @@ localStorage.getItem("letsProducts")
 
 
 
-
-// ================================
-// DISPLAY PRODUCTS
-// ================================
 
 
 if(products.length === 0){
@@ -101,17 +97,6 @@ P${product.price}
 
 
 
-<p>
-
-Stock:
-${product.stock}
-
-</p>
-
-
-
-
-
 <button
 
 class="btn btn-primary"
@@ -123,7 +108,6 @@ Add To Cart
 
 
 </button>
-
 
 
 
@@ -148,19 +132,13 @@ Add To Cart
 
 
 
-
-// ================================
-// ADD TO CART
-// ================================
-
-
 function addToCart(productID){
 
 
 
 let cart = JSON.parse(
 
-localStorage.getItem("cart")
+localStorage.getItem("letsCart")
 
 ) || [];
 
@@ -178,11 +156,8 @@ item => item.id === productID
 
 
 
-if(!product){
 
-alert(
-"Product not found"
-);
+if(!product){
 
 return;
 
@@ -191,11 +166,6 @@ return;
 
 
 
-
-
-
-
-// CHECK IF PRODUCT EXISTS
 
 
 const existingProduct = cart.find(
@@ -209,19 +179,15 @@ item => item.id === productID
 
 
 
-
 if(existingProduct){
 
 
-
-existingProduct.quantity += 1;
-
+existingProduct.quantity++;
 
 
 }
 
 else{
-
 
 
 cart.push({
@@ -233,7 +199,7 @@ id: product.id,
 name: product.name,
 
 
-price: product.price,
+price: Number(product.price),
 
 
 image: product.image,
@@ -245,12 +211,7 @@ quantity:1
 });
 
 
-
 }
-
-
-
-
 
 
 
@@ -258,7 +219,7 @@ quantity:1
 
 localStorage.setItem(
 
-"cart",
+"letsCart",
 
 JSON.stringify(cart)
 
@@ -268,12 +229,9 @@ JSON.stringify(cart)
 
 
 
-
 alert(
 
-product.name +
-
-" added to cart"
+product.name + " added to cart"
 
 );
 
