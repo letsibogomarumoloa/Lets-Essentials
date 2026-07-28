@@ -1,7 +1,7 @@
 /* =========================================
    LETS ESSENTIALS WEBSITE
    MAIN STYLESHEET
-   VERSION 2.0
+   LUXURY COLOR UPDATE
 ========================================= */
 
 
@@ -30,7 +30,7 @@ body{
 
     font-family:'Poppins', sans-serif;
 
-    color:#111827;
+    color:#1C1C1C;
 
     background:#ffffff;
 
@@ -97,17 +97,17 @@ button{
 :root{
 
 
-    --primary:#10B981;
+    --primary:#0F6B4F;
 
-    --dark:#111827;
+    --dark:#1C1C1C;
 
-    --grey:#F9FAFB;
+    --grey:#FAFAF7;
 
     --light-grey:#E5E7EB;
 
     --white:#ffffff;
 
-    --accent:#F59E0B;
+    --accent:#D4AF37;
 
 
     --shadow:
@@ -207,7 +207,7 @@ h3{
 
 p{
 
-    color:#4B5563;
+    color:#555555;
 
     margin-top:10px;
 
@@ -272,7 +272,7 @@ p{
 
     box-shadow:
 
-    0 10px 25px rgba(16,185,129,.3);
+    0 10px 25px rgba(15,107,79,.3);
 
 
 }
@@ -297,7 +297,7 @@ p{
 .btn-secondary:hover{
 
 
-    background:#f3f4f6;
+    background:#f3f3f0;
 
 
 }
@@ -319,6 +319,7 @@ p{
     border-radius:30px;
 
     font-size:.85rem;
+
 
 }
 
@@ -554,9 +555,9 @@ p{
 
     linear-gradient(
 
-        rgba(0,0,0,.55),
+        rgba(0,0,0,.65),
 
-        rgba(0,0,0,.55)
+        rgba(0,0,0,.65)
 
     ),
 
@@ -623,7 +624,7 @@ p{
 .hero-content p{
 
 
-    color:#f3f4f6;
+    color:#f5f5f5;
 
 
     max-width:600px;
@@ -646,10 +647,10 @@ p{
 
     background:
 
-    rgba(16,185,129,.2);
+    rgba(15,107,79,.2);
 
 
-    color:#6ee7b7;
+    color:#D4AF37;
 
 
     padding:8px 18px;
@@ -766,7 +767,7 @@ p{
 
     background:
 
-    rgba(16,185,129,.1);
+    rgba(15,107,79,.1);
 
 
     color:var(--primary);
@@ -856,7 +857,7 @@ p{
 .stat-card h2{
 
 
-    color:var(--primary);
+    color:var(--accent);
 
 
     font-size:2.3rem;
@@ -897,7 +898,7 @@ p{
 .section-title span{
 
 
-    color:var(--primary);
+    color:var(--accent);
 
 
     font-weight:700;
@@ -1025,7 +1026,7 @@ p{
 
     background:
 
-    rgba(16,185,129,.1);
+    rgba(15,107,79,.1);
 
 
     color:var(--primary);
@@ -1168,7 +1169,7 @@ p{
     font-size:2rem;
 
 
-    color:var(--primary);
+    color:var(--accent);
 
 
     margin-bottom:20px;
@@ -1187,13 +1188,6 @@ p{
 
 
 }
-
-
-
-
-
-
-
 
 /* =========================================
    AUTO CARE PRICING
@@ -1287,7 +1281,7 @@ p{
 .price-card span{
 
 
-    color:#6ee7b7;
+    color:var(--accent);
 
 
     font-size:1.5rem;
@@ -1630,7 +1624,7 @@ p{
 .section-tag{
 
 
-    color:#6ee7b7;
+    color:var(--accent);
 
 
     font-weight:700;
@@ -1731,9 +1725,9 @@ p{
 
         135deg,
 
-        var(--primary),
+        var(--dark),
 
-        #059669
+        var(--primary)
 
     );
 
@@ -1773,7 +1767,7 @@ p{
     margin:20px auto;
 
 
-  }
+}
 
 /* =========================================
    FOOTER
@@ -1783,7 +1777,7 @@ p{
 .footer{
 
 
-    background:#0B1120;
+    background:#111111;
 
 
     color:white;
@@ -1831,7 +1825,7 @@ p{
 .footer .logo span{
 
 
-    color:#6ee7b7;
+    color:var(--accent);
 
 
 }
@@ -1885,7 +1879,7 @@ p{
     border-radius:50%;
 
 
-    background:#1F2937;
+    background:#2a2a2a;
 
 
     display:flex;
@@ -1969,7 +1963,7 @@ p{
 .footer-column ul li a:hover{
 
 
-    color:var(--primary);
+    color:var(--accent);
 
 
 }
@@ -2835,6 +2829,13 @@ p{
 
 }
 
+
+
+
+
+
+
+
 /* =========================================
    CART PAGE
 ========================================= */
@@ -2913,7 +2914,7 @@ p{
 
 .remove-btn{
 
-    background:#ef4444;
+    background:#b91c1c;
 
     color:white;
 
@@ -2981,6 +2982,13 @@ p{
 
 
 }
+
+
+
+
+
+
+
 
 /* =========================================
    CHECKOUT PAGE
@@ -3076,6 +3084,13 @@ p{
 
 }
 
+
+
+
+
+
+
+
 /* =========================================
    ORDER TRACKING
 ========================================= */
@@ -3084,6 +3099,8 @@ p{
 .tracking-section{
 
     min-height:500px;
+
+
 
 }
 
@@ -3189,6 +3206,13 @@ p{
 
 }
 
+
+
+
+
+
+
+
 /* =========================================
    ADMIN PANELS
 ========================================= */
@@ -3196,9 +3220,9 @@ p{
 
 #ordersContainer{
 
-display:grid;
+    display:grid;
 
-gap:25px;
+    gap:25px;
 
 }
 
@@ -3206,13 +3230,13 @@ gap:25px;
 
 .admin-card{
 
-background:white;
+    background:white;
 
-padding:30px;
+    padding:30px;
 
-border-radius:var(--radius);
+    border-radius:var(--radius);
 
-box-shadow:var(--shadow);
+    box-shadow:var(--shadow);
 
 }
 
@@ -3221,13 +3245,13 @@ box-shadow:var(--shadow);
 .admin-card select,
 .checkout-box select{
 
-padding:12px;
+    padding:12px;
 
-border-radius:8px;
+    border-radius:8px;
 
-border:1px solid #ddd;
+    border:1px solid #ddd;
 
-margin-top:10px;
+    margin-top:10px;
 
 }
 
@@ -3235,7 +3259,7 @@ margin-top:10px;
 
 .checkout-box ul{
 
-margin:15px 0;
+    margin:15px 0;
 
 }
 
@@ -3243,9 +3267,16 @@ margin:15px 0;
 
 .checkout-box li{
 
-margin-bottom:8px;
+    margin-bottom:8px;
 
 }
+
+
+
+
+
+
+
 
 /* =========================================
    ADMIN BOOKING CARDS
@@ -3254,9 +3285,9 @@ margin-bottom:8px;
 
 #bookingsContainer{
 
-display:grid;
+    display:grid;
 
-gap:25px;
+    gap:25px;
 
 }
 
@@ -3264,9 +3295,16 @@ gap:25px;
 
 #bookingsContainer .checkout-box{
 
-border-left:5px solid var(--primary);
+    border-left:5px solid var(--primary);
 
 }
+
+
+
+
+
+
+
 
 /* =========================================
    PRODUCT ADMIN
@@ -3275,9 +3313,9 @@ border-left:5px solid var(--primary);
 
 #productsContainer{
 
-display:grid;
+    display:grid;
 
-gap:25px;
+    gap:25px;
 
 }
 
@@ -3285,9 +3323,16 @@ gap:25px;
 
 #productsContainer .checkout-box{
 
-border-left:5px solid var(--accent);
+    border-left:5px solid var(--accent);
 
 }
+
+
+
+
+
+
+
 
 /* =========================================
    SMALL BUTTON
@@ -3297,21 +3342,21 @@ border-left:5px solid var(--accent);
 .btn-small{
 
 
-background:var(--primary);
+    background:var(--primary);
 
-color:white;
+    color:white;
 
-border:none;
+    border:none;
 
-padding:10px 18px;
+    padding:10px 18px;
 
-border-radius:30px;
+    border-radius:30px;
 
-cursor:pointer;
+    cursor:pointer;
 
-font-family:inherit;
+    font-family:inherit;
 
-transition:.3s;
+    transition:.3s;
 
 
 }
@@ -3321,7 +3366,7 @@ transition:.3s;
 .btn-small:hover{
 
 
-transform:translateY(-3px);
+    transform:translateY(-3px);
 
 }
 
@@ -3331,11 +3376,18 @@ transform:translateY(-3px);
 .active{
 
 
-color:var(--primary)!important;
+    color:var(--primary)!important;
 
-font-weight:700;
+    font-weight:700;
 
 }
+
+
+
+
+
+
+
 
 /* =========================================
    ORDER SUCCESS MESSAGE
@@ -3345,19 +3397,19 @@ font-weight:700;
 .order-result{
 
 
-background:#ecfdf5;
+    background:#edf7f2;
 
 
-padding:25px;
+    padding:25px;
 
 
-border-left:5px solid #10b981;
+    border-left:5px solid var(--primary);
 
 
-border-radius:10px;
+    border-radius:10px;
 
 
-margin-top:20px;
+    margin-top:20px;
 
 
 }
@@ -3367,7 +3419,7 @@ margin-top:20px;
 .order-result h3{
 
 
-color:#059669;
+    color:var(--primary);
 
 
 }
