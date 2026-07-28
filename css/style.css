@@ -3267,3 +3267,24 @@ gap:25px;
 border-left:5px solid var(--primary);
 
 }
+
+/* =========================================
+   PRODUCT ADMIN
+========================================= */
+
+
+#productsContainer{
+
+display:grid;
+
+gap:25px;
+
+}
+
+
+
+#productsContainer .checkout-box{
+
+border-left:5px solid var(--accent);
+
+}
