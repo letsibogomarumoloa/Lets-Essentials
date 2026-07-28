@@ -3288,3 +3288,51 @@ gap:25px;
 border-left:5px solid var(--accent);
 
 }
+
+/* =========================================
+   SMALL BUTTON
+========================================= */
+
+
+.btn-small{
+
+
+background:var(--primary);
+
+color:white;
+
+border:none;
+
+padding:10px 18px;
+
+border-radius:30px;
+
+cursor:pointer;
+
+font-family:inherit;
+
+transition:.3s;
+
+
+}
+
+
+
+.btn-small:hover{
+
+
+transform:translateY(-3px);
+
+}
+
+
+
+
+.active{
+
+
+color:var(--primary)!important;
+
+font-weight:700;
+
+}
