@@ -1,4 +1,72 @@
 /* =========================================
+   AUTO FILL CUSTOMER DETAILS
+========================================= */
+
+
+const loggedCustomer = JSON.parse(
+
+localStorage.getItem("letsCustomer")
+
+);
+
+
+
+if(loggedCustomer){
+
+
+const nameInput =
+document.getElementById(
+"checkoutName"
+);
+
+
+
+const emailInput =
+document.getElementById(
+"checkoutEmail"
+);
+
+
+
+const phoneInput =
+document.getElementById(
+"checkoutPhone"
+);
+
+
+
+
+
+if(nameInput){
+
+nameInput.value =
+loggedCustomer.name;
+
+}
+
+
+
+if(emailInput){
+
+emailInput.value =
+loggedCustomer.email;
+
+}
+
+
+
+if(phoneInput){
+
+phoneInput.value =
+loggedCustomer.phone;
+
+}
+
+
+
+}
+
+/* =========================================
    LETS ESSENTIALS
    CHECKOUT + WHATSAPP SYSTEM
 ========================================= */
